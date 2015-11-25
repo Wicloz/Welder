@@ -8,12 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Welder
-{
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
+namespace Welder {
+    public partial class ModManager : Form {
+        private RepoData repo = new RepoData();
+
+        public ModManager () {
             InitializeComponent();
         }
     }
