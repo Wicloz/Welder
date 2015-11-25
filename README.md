@@ -1,2 +1,2 @@
 # Welder
-A collection of tools for managing Sodler repo's
+A collection of tools for managing Solder repo's
