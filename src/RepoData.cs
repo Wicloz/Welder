@@ -16,6 +16,7 @@ namespace Welder {
             }
         }
 
+        //Saves the currently open repo and loads and updates the new one
         public void LoadRepoFolder (string repoLocation) {
             SaveModList();
             repoDir = repoLocation;
@@ -25,6 +26,7 @@ namespace Welder {
             }
         }
 
+        //Loads the cached modlist
         void LoadModList () {
             modlist = new List<ModData>();
             if (Directory.Exists(repoDir))
@@ -37,6 +39,7 @@ namespace Welder {
             SaveModList();
         }
 
+        //Saves the cached modlist
         void SaveModList () {
             if (Directory.Exists(repoDir))
                 SaveLoad.SaveFileBf(modlist, modlistFile);

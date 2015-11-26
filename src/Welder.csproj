@@ -52,12 +52,14 @@
     <Compile Include="ConfigPackager.Designer.cs">
       <DependentUpon>ConfigPackager.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiscFunctions.cs" />
     <Compile Include="MM_RepoAsker.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MM_RepoAsker.Designer.cs">
       <DependentUpon>MM_RepoAsker.cs</DependentUpon>
     </Compile>
+    <Compile Include="MM_SiteConfig.cs" />
     <Compile Include="ModData.cs" />
     <Compile Include="ModManager.cs">
       <SubType>Form</SubType>

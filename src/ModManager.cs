@@ -14,6 +14,7 @@ namespace Welder {
         private RepoData repo = new RepoData();
         private MM_Settings settings = new MM_Settings();
         public static string cd = Directory.GetCurrentDirectory();
+        public static List<MM_SiteConfig> sites = new List<MM_SiteConfig>();
 
         public ModManager () {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace Welder {
 
         private void ModManager_Load (object sender, EventArgs e) {
             LoadSettings();
+            LoadSiteConfigs();
             UpdateRepoData();
         }
 
@@ -32,6 +34,7 @@ namespace Welder {
             }
         }
 
+        //Loads settings
         private void LoadSettings () {
             if (File.Exists(cd + "/settings.cfg"))
                 settings = SaveLoad.LoadFileXml<MM_Settings>(cd + "/settings.cfg");
@@ -46,15 +49,27 @@ namespace Welder {
             textBoxRepo.Text = settings.repo;
         }
 
+        //Saves settings
         private void SaveSettings () {
             SaveLoad.SaveFileXml(settings, cd + "/settings.cfg");
         }
 
+        //Loads site configurations
+        private void LoadSiteConfigs () {
+            sites = SaveLoad.LoadFileXml<List<MM_SiteConfig>>(cd + "/sites.cfg");
+            if (sites == null)
+                sites = new List<MM_SiteConfig>();
+            //sites.Add(new MM_SiteConfig());
+            //SaveLoad.SaveFileXml(sites, cd + "/sites.cfg");
+        }
+
+        //Updates repo location and repo itself
         private void buttonUpdateRepo_Click (object sender, EventArgs e) {
             settings.repo = textBoxRepo.Text;
             UpdateRepoData();
         }
 
+        //Loads the currently selected repo and reloads displays
         private void UpdateRepoData () {
             repo.LoadRepoFolder(settings.repo);
         }
