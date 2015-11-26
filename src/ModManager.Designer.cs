@@ -39,9 +39,9 @@
             this.buttonAllFind = new System.Windows.Forms.Button();
             this.buttonOneGoogle = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxModSlug = new System.Windows.Forms.TextBox();
+            this.textBoxModVsite = new System.Windows.Forms.TextBox();
+            this.textBoxModDsite = new System.Windows.Forms.TextBox();
             this.buttonOneUpdate = new System.Windows.Forms.Button();
             this.buttonOneOpensite = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,8 +51,9 @@
             this.buttonOneCheck = new System.Windows.Forms.Button();
             this.action = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.siteMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxRepo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.buttonUpdateRepo = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -128,9 +129,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.buttonOneOpensite);
             this.groupBox1.Controls.Add(this.buttonOneUpdate);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBoxModDsite);
+            this.groupBox1.Controls.Add(this.textBoxModVsite);
+            this.groupBox1.Controls.Add(this.textBoxModSlug);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.buttonOneGoogle);
             this.groupBox1.Location = new System.Drawing.Point(12, 38);
@@ -201,32 +202,32 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Mod Slug:";
             // 
-            // textBox1
+            // textBoxModSlug
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxModSlug.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(91, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(881, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBoxModSlug.Location = new System.Drawing.Point(91, 19);
+            this.textBoxModSlug.Name = "textBoxModSlug";
+            this.textBoxModSlug.Size = new System.Drawing.Size(881, 20);
+            this.textBoxModSlug.TabIndex = 2;
             // 
-            // textBox2
+            // textBoxModVsite
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxModVsite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(91, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(797, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBoxModVsite.Location = new System.Drawing.Point(91, 45);
+            this.textBoxModVsite.Name = "textBoxModVsite";
+            this.textBoxModVsite.Size = new System.Drawing.Size(797, 20);
+            this.textBoxModVsite.TabIndex = 3;
             // 
-            // textBox3
+            // textBoxModDsite
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxModDsite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(91, 71);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(962, 20);
-            this.textBox3.TabIndex = 4;
+            this.textBoxModDsite.Location = new System.Drawing.Point(91, 71);
+            this.textBoxModDsite.Name = "textBoxModDsite";
+            this.textBoxModDsite.Size = new System.Drawing.Size(962, 20);
+            this.textBoxModDsite.TabIndex = 4;
             // 
             // buttonOneUpdate
             // 
@@ -307,14 +308,14 @@
             this.siteMode.Text = "Status Site";
             this.siteMode.Width = 86;
             // 
-            // textBox4
+            // textBoxRepo
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxRepo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(98, 12);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(1138, 20);
-            this.textBox4.TabIndex = 3;
+            this.textBoxRepo.Location = new System.Drawing.Point(98, 12);
+            this.textBoxRepo.Name = "textBoxRepo";
+            this.textBoxRepo.Size = new System.Drawing.Size(1056, 20);
+            this.textBoxRepo.TabIndex = 3;
             // 
             // label4
             // 
@@ -325,19 +326,34 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Repo Location:";
             // 
+            // buttonUpdateRepo
+            // 
+            this.buttonUpdateRepo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonUpdateRepo.Location = new System.Drawing.Point(1160, 12);
+            this.buttonUpdateRepo.Name = "buttonUpdateRepo";
+            this.buttonUpdateRepo.Size = new System.Drawing.Size(76, 20);
+            this.buttonUpdateRepo.TabIndex = 5;
+            this.buttonUpdateRepo.Text = "Update";
+            this.buttonUpdateRepo.UseVisualStyleBackColor = true;
+            this.buttonUpdateRepo.Click += new System.EventHandler(this.buttonUpdateRepo_Click);
+            // 
             // ModManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 582);
+            this.Controls.Add(this.buttonUpdateRepo);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBoxRepo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listViewMods);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModManager";
             this.Text = "Mod Version Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModManager_FormClosing);
+            this.Load += new System.EventHandler(this.ModManager_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -366,16 +382,17 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonOneOpensite;
         private System.Windows.Forms.Button buttonOneUpdate;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxModDsite;
+        private System.Windows.Forms.TextBox textBoxModVsite;
+        private System.Windows.Forms.TextBox textBoxModSlug;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonOneGoogle;
         private System.Windows.Forms.Button buttonOneCheck;
         private System.Windows.Forms.Button buttonOneFind;
         private System.Windows.Forms.ColumnHeader siteMode;
         private System.Windows.Forms.ColumnHeader action;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxRepo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonUpdateRepo;
     }
 }

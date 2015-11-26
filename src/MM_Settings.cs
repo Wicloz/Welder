@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Welder {
-    class RepoData {
-        private List<ModData> modlist = new List<ModData>();
+    [Serializable]
+    public class MM_Settings {
+        public string repo = "";
+        public MM_Settings () { }
     }
 }

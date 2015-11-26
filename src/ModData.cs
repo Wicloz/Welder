@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Welder {
-    class ModData {
+    [Serializable]
+    public class ModData {
     }
 }
