@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace Welder {
     [Serializable]
     public class ModData {
+        string modslug = "error";
     }
 }

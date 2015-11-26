@@ -13,7 +13,7 @@ namespace Welder {
     public partial class ModManager : Form {
         private RepoData repo = new RepoData();
         private MM_Settings settings = new MM_Settings();
-        private static string cd = Directory.GetCurrentDirectory();
+        public static string cd = Directory.GetCurrentDirectory();
 
         public ModManager () {
             InitializeComponent();
@@ -21,6 +21,7 @@ namespace Welder {
 
         private void ModManager_Load (object sender, EventArgs e) {
             LoadSettings();
+            UpdateRepoData();
         }
 
         private void ModManager_FormClosing (object sender, FormClosingEventArgs e) {
@@ -51,6 +52,11 @@ namespace Welder {
 
         private void buttonUpdateRepo_Click (object sender, EventArgs e) {
             settings.repo = textBoxRepo.Text;
+            UpdateRepoData();
+        }
+
+        private void UpdateRepoData () {
+            repo.LoadRepoFolder(settings.repo);
         }
     }
 }
