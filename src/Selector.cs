@@ -25,5 +25,9 @@ namespace Welder
         private void buttonConfigPackager_Click(object sender, EventArgs e) {
             configPackager.Show();
         }
+
+        private void Selector_Shown (object sender, EventArgs e) {
+            modManager.Show();
+        }
     }
 }

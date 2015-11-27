@@ -67,6 +67,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Selector";
             this.Text = "Welder";
+            this.Shown += new System.EventHandler(this.Selector_Shown);
             this.ResumeLayout(false);
 
         }
