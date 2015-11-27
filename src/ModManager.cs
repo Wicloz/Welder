@@ -107,11 +107,12 @@ namespace Welder {
                 lvi.SubItems.Add(mod.sitemode);
                 lvi.SubItems.Add(mod.versionLocal);
                 lvi.SubItems.Add(mod.versionOnline);
-                lvi.SubItems.Add("");
-                lvi.SubItems.Add("");
-                lvi.SubItems.Add("");
-                lvi.SubItems.Add("");
-                lvi.SubItems.Add("");
+                lvi.SubItems.Add(mod.updateState);
+                lvi.SubItems.Add(mod.website1);
+                lvi.SubItems.Add(mod.website2);
+                lvi.SubItems.Add(mod.website3);
+                lvi.SubItems.Add(mod.website4);
+                lvi.SubItems.Add(mod.website5);
 
                 lvi.Checked = mod.enabled;
                 listViewMods.Items.Add(lvi);

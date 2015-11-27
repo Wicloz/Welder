@@ -63,6 +63,7 @@
             this.buttonOneDuplicate = new System.Windows.Forms.Button();
             this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonDeleteMod = new System.Windows.Forms.Button();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +84,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listViewMods.FullRowSelect = true;
             this.listViewMods.GridLines = true;
             this.listViewMods.HideSelection = false;
@@ -124,18 +126,22 @@
             // 
             // columnHeader1
             // 
+            this.columnHeader1.Text = "Website 1";
             this.columnHeader1.Width = 84;
             // 
             // columnHeader2
             // 
+            this.columnHeader2.Text = "Website 2";
             this.columnHeader2.Width = 85;
             // 
             // columnHeader3
             // 
+            this.columnHeader3.Text = "Website 3";
             this.columnHeader3.Width = 85;
             // 
             // columnHeader4
             // 
+            this.columnHeader4.Text = "Website 4";
             this.columnHeader4.Width = 84;
             // 
             // groupBox1
@@ -440,6 +446,11 @@
             this.buttonDeleteMod.UseVisualStyleBackColor = true;
             this.buttonDeleteMod.Click += new System.EventHandler(this.buttonDeleteMod_Click);
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Website 5";
+            this.columnHeader5.Width = 85;
+            // 
             // ModManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -508,5 +519,6 @@
         private System.Windows.Forms.TextBox textBoxModNewMcVersion;
         private System.Windows.Forms.ColumnHeader mcVersion;
         private System.Windows.Forms.Button buttonDeleteMod;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

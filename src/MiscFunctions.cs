@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Welder {
     class MiscFunctions {
+        //Returns the site config for a certain website url
         public static MM_SiteConfig GetSiteConfig (string website) {
             foreach (MM_SiteConfig config in ModManager.sites) {
                 if (website.Contains(config.identifier))
@@ -14,11 +15,21 @@ namespace Welder {
             return new MM_SiteConfig();
         }
 
+        //Returns the identifier for a certain config name
+        public static string GetSiteIdentifier (string name) {
+            foreach (MM_SiteConfig config in ModManager.sites) {
+                if (config.name == name)
+                    return config.identifier;
+            }
+            return "no config with that name"; //Arbitrary string that no url would contain
+        }
+
         //Returns true when kar is a digit
         public static bool IsDigit (char kar) {
             return (kar >= '0' && kar <= '9');
         }
 
+        //Returns whether a string could be a site or not
         public static bool IsValidSite (string url) {
             return ((url.Contains("http://") || url.Contains("https://")) && url.Contains("."));
         }
@@ -35,9 +46,27 @@ namespace Welder {
             return modName.Replace(modslug + "-", "").Replace(".zip", "");
         }
 
+        //Returns whether text1 contains text2 or tex2 contains text1
+        public static bool PartialMatch (string text1, string text2) {
+            string text1Clean = CleanString(text1);
+            string text2Clean = CleanString(text2);
+            return (text1Clean.Contains(text2Clean) || text2Clean.Contains(text1Clean));
+        }
+
         //Returns the first string in text between before and after
         public static string ExtractSection (string text, string before, string after) {
-            return "";
+            string returnString = "";
+            string[] beforeArray = new string[] {before};
+            string[] afterArray = new string[] {after};
+
+            if (before == "")
+                returnString = text;
+            else if (text.Split(beforeArray, StringSplitOptions.RemoveEmptyEntries).Length > 1)
+                returnString = text.Split(beforeArray, 2, StringSplitOptions.RemoveEmptyEntries)[1];
+            if (returnString.Split(afterArray, StringSplitOptions.RemoveEmptyEntries).Length > 0)
+                returnString = returnString.Split(afterArray, 2, StringSplitOptions.RemoveEmptyEntries)[0];
+
+            return returnString;
         }
 
         //Removes a bunch of characters and numbers from a string

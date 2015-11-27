@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Welder {
     [Serializable]
     public class MM_SiteConfig {
-        public string name = "Unsupported";
+        public string name = "NONE";
         public string identifier = "";
         public string downloadSite = "NONE";
         public string mcLineId = "html";
