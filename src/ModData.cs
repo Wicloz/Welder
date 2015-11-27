@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace Welder {
     [Serializable]
     public class ModData {
-        public string modslug = "error";
+        public string modslug = "NONE";
         public bool enabled = true;
-        public string mcVersion = "error";
+        public string mcVersion = "NONE";
         public string versionLocal = "NA";
         public string versionOnline = "NA";
-        public string fileNumber = "NA";
-        public string fileName = "NA";
-        public string releaseDate = "NA";
+        public string fileNumberOnline = "NA";
+        public string fileNameOnline = "NA";
+        public string releaseDateLatest = "NA";
         public string websiteCheck = "NONE";
         public string websiteDownload {
             get {

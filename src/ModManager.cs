@@ -15,6 +15,8 @@ namespace Welder {
         private MM_Settings settings = new MM_Settings();
         public static string cd = Directory.GetCurrentDirectory();
         public static List<MM_SiteConfig> sites = new List<MM_SiteConfig>();
+        private ModData selectedMod = new ModData();
+        private bool updatingList = false;
 
         public ModManager () {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace Welder {
 
         private void ModManager_FormClosing (object sender, FormClosingEventArgs e) {
             SaveSettings();
+            repo.SaveModList();
             if (e.CloseReason == CloseReason.UserClosing) {
                 e.Cancel = true;
                 Hide();
@@ -75,6 +78,55 @@ namespace Welder {
         //Loads the currently selected repo and reloads displays
         private void UpdateRepoData () {
             repo.LoadRepoFolder(settings.repo, settings.mainMcVersion);
+            ReloadModList();
+        }
+
+        //Reloads the mod list view and selected mod info
+        private void ReloadModList () {
+            updatingList = true;
+            selectedMod = new ModData();
+            listViewMods.Items.Clear();
+            foreach (ModData mod in repo.modlist) {
+                ListViewItem lvi = new ListViewItem(mod.mcVersion);
+
+                lvi.SubItems.Add(mod.modslug);
+                lvi.SubItems.Add(mod.sitemode);
+                lvi.SubItems.Add(mod.versionLocal);
+                lvi.SubItems.Add(mod.versionOnline);
+                lvi.SubItems.Add("");
+                lvi.SubItems.Add("");
+                lvi.SubItems.Add("");
+                lvi.SubItems.Add("");
+                lvi.SubItems.Add("");
+
+                lvi.Checked = mod.enabled;
+                listViewMods.Items.Add(lvi);
+            }
+            updatingList = false;
+        }
+
+        //Sets the currently selected mod info
+        private void SetModInfoBox () {
+            if (selectedMod.modslug == "NONE") {
+
+            }
+            else {
+
+            }
+        }
+
+        //Selects a new mod and reloads information
+        private void listViewMods_SelectedIndexChanged (object sender, EventArgs e) {
+            if (listViewMods.SelectedIndices.Count > 0) {
+                selectedMod = repo.modlist[listViewMods.SelectedIndices[0]];
+                SetModInfoBox();
+            }
+        }
+
+        //Changes the enabled state of the checked mod
+        private void listViewMods_ItemChecked (object sender, ItemCheckedEventArgs e) {
+            if (!updatingList)
+                repo.modlist[e.Item.Index].enabled = e.Item.Checked;
         }
     }
 }

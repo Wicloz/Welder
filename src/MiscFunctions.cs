@@ -6,14 +6,32 @@ using System.Threading.Tasks;
 
 namespace Welder {
     class MiscFunctions {
-        //Returns everything before the first dash, cleaned
-        public static string CleanModName (string originalName) {
-            char[] delim = new char[] { '-' };
-            string proDash = originalName.Split(delim)[0];
-            return CleanString(proDash).Replace("botaniar", "botania");
+        //Returns true when kar is a digit
+        public static bool IsDigit (char kar) {
+            if (kar >= '0' && kar <= '9')
+                return true;
+            else
+                return false;
         }
 
-        //Removes a bunch of characyers and numbers from a string
+        //Returns the vesion of a mod without the minecraft version
+        public static string VersionFromOnlineMod (string modName, string mcVersion) {
+            char[] delims = new char[] {'.', '-', '_'};
+            string version = modName.Split(delims, 2)[1];
+            return ConvertToVersion(version).Replace(mcVersion, "").TrimStart(delims).TrimEnd(delims);
+        }
+
+        //Returns the vesion of a repo mod
+        public static string VersionFromRepoMod (string modName, string modslug) {
+            return modName.Replace(modslug + "-", "").Replace(".zip", "");
+        }
+
+        //Returns the first string in text between before and after
+        public static string ExtractSection (string text, string before, string after) {
+            return "";
+        }
+
+        //Removes a bunch of characters and numbers from a string
         public static string CleanString (string originalString) {
             return originalString
                 .ToLower()
@@ -41,39 +59,26 @@ namespace Welder {
                     .Replace("}", "");
         }
 
-        //Removes all letters from a string and returns only numbers seperated by dots
-        public static string RemoveLetters (string originalString) {
+        //Returns only numbers seperated by dots
+        public static string ConvertToVersion (string text) {
             string returnString = "";
-            char[] charArray = originalString.Replace(" ", "").ToLower().ToCharArray();
-            List<char> allowedList = new List<char>();
-
-            allowedList.Add('1');
-            allowedList.Add('2');
-            allowedList.Add('3');
-            allowedList.Add('4');
-            allowedList.Add('5');
-            allowedList.Add('6');
-            allowedList.Add('7');
-            allowedList.Add('8');
-            allowedList.Add('9');
-            allowedList.Add('0');
+            char[] charArray = text.Replace(" ", "").ToLower().ToCharArray();
 
             returnString += "#";
-            bool pointMade = true;
-
+            bool dotMade = true;
             foreach (char c in charArray) {
-                if (allowedList.Contains(c)) {
+                if (IsDigit(c)) {
                     returnString += c;
-                    pointMade = false;
+                    dotMade = false;
                 }
-                else if (!pointMade) {
+                else if (!dotMade) {
                     returnString += ".";
-                    pointMade = true;
+                    dotMade = true;
                 }
             }
 
             returnString += "#";
-            return returnString.Replace(".#", "").Replace("#.", "").Replace("#", "").Replace("..", ".").Replace("..", ".").Replace("..", ".");
+            return returnString.Replace("..", ".").Replace("..", ".").Replace("..", ".").Replace(".#", "").Replace("#.", "").Replace("#", "");
         }
     }
 }

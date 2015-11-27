@@ -68,7 +68,6 @@
             // 
             // listViewMods
             // 
-            this.listViewMods.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listViewMods.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -87,7 +86,6 @@
             this.listViewMods.FullRowSelect = true;
             this.listViewMods.GridLines = true;
             this.listViewMods.HideSelection = false;
-            this.listViewMods.HoverSelection = true;
             this.listViewMods.Location = new System.Drawing.Point(12, 198);
             this.listViewMods.MultiSelect = false;
             this.listViewMods.Name = "listViewMods";
@@ -95,6 +93,8 @@
             this.listViewMods.TabIndex = 0;
             this.listViewMods.UseCompatibleStateImageBehavior = false;
             this.listViewMods.View = System.Windows.Forms.View.Details;
+            this.listViewMods.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewMods_ItemChecked);
+            this.listViewMods.SelectedIndexChanged += new System.EventHandler(this.listViewMods_SelectedIndexChanged);
             // 
             // slug
             // 
@@ -342,8 +342,7 @@
             // 
             // buttonUpdateRepo
             // 
-            this.buttonUpdateRepo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonUpdateRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUpdateRepo.Location = new System.Drawing.Point(1160, 12);
             this.buttonUpdateRepo.Name = "buttonUpdateRepo";
             this.buttonUpdateRepo.Size = new System.Drawing.Size(76, 20);
@@ -354,6 +353,7 @@
             // 
             // textBoxRepoVersion
             // 
+            this.textBoxRepoVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRepoVersion.Location = new System.Drawing.Point(1054, 12);
             this.textBoxRepoVersion.Name = "textBoxRepoVersion";
             this.textBoxRepoVersion.Size = new System.Drawing.Size(100, 20);
@@ -361,6 +361,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(919, 15);
             this.label5.Name = "label5";
