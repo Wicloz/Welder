@@ -62,6 +62,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.buttonOneDuplicate = new System.Windows.Forms.Button();
             this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonDeleteMod = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +90,7 @@
             this.listViewMods.Location = new System.Drawing.Point(12, 198);
             this.listViewMods.MultiSelect = false;
             this.listViewMods.Name = "listViewMods";
-            this.listViewMods.Size = new System.Drawing.Size(1224, 372);
+            this.listViewMods.Size = new System.Drawing.Size(1224, 343);
             this.listViewMods.TabIndex = 0;
             this.listViewMods.UseCompatibleStateImageBehavior = false;
             this.listViewMods.View = System.Windows.Forms.View.Details;
@@ -222,6 +223,7 @@
             this.buttonOneOpensite.TabIndex = 6;
             this.buttonOneOpensite.Text = "Open";
             this.buttonOneOpensite.UseVisualStyleBackColor = true;
+            this.buttonOneOpensite.Click += new System.EventHandler(this.buttonOneOpensite_Click);
             // 
             // buttonOneUpdate
             // 
@@ -240,6 +242,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxModDsite.Location = new System.Drawing.Point(91, 97);
             this.textBoxModDsite.Name = "textBoxModDsite";
+            this.textBoxModDsite.ReadOnly = true;
             this.textBoxModDsite.Size = new System.Drawing.Size(962, 20);
             this.textBoxModDsite.TabIndex = 4;
             // 
@@ -251,6 +254,7 @@
             this.textBoxModVsite.Name = "textBoxModVsite";
             this.textBoxModVsite.Size = new System.Drawing.Size(797, 20);
             this.textBoxModVsite.TabIndex = 3;
+            this.textBoxModVsite.TextChanged += new System.EventHandler(this.textBoxModVsite_TextChanged);
             // 
             // textBoxModSlug
             // 
@@ -258,6 +262,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxModSlug.Location = new System.Drawing.Point(91, 19);
             this.textBoxModSlug.Name = "textBoxModSlug";
+            this.textBoxModSlug.ReadOnly = true;
             this.textBoxModSlug.Size = new System.Drawing.Size(881, 20);
             this.textBoxModSlug.TabIndex = 2;
             // 
@@ -279,6 +284,7 @@
             this.buttonOneGoogle.TabIndex = 0;
             this.buttonOneGoogle.Text = "Google";
             this.buttonOneGoogle.UseVisualStyleBackColor = true;
+            this.buttonOneGoogle.Click += new System.EventHandler(this.buttonOneGoogle_Click);
             // 
             // groupBox2
             // 
@@ -385,6 +391,7 @@
             this.textBoxModMcVersion.Name = "textBoxModMcVersion";
             this.textBoxModMcVersion.Size = new System.Drawing.Size(662, 20);
             this.textBoxModMcVersion.TabIndex = 13;
+            this.textBoxModMcVersion.TextChanged += new System.EventHandler(this.textBoxModMcVersion_TextChanged);
             // 
             // label6
             // 
@@ -414,17 +421,31 @@
             this.buttonOneDuplicate.TabIndex = 16;
             this.buttonOneDuplicate.Text = "Create New";
             this.buttonOneDuplicate.UseVisualStyleBackColor = true;
+            this.buttonOneDuplicate.Click += new System.EventHandler(this.buttonOneDuplicate_Click);
             // 
             // mcVersion
             // 
             this.mcVersion.Text = "MC Version";
             this.mcVersion.Width = 68;
             // 
+            // buttonDeleteMod
+            // 
+            this.buttonDeleteMod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeleteMod.Location = new System.Drawing.Point(12, 547);
+            this.buttonDeleteMod.Name = "buttonDeleteMod";
+            this.buttonDeleteMod.Size = new System.Drawing.Size(1224, 23);
+            this.buttonDeleteMod.TabIndex = 8;
+            this.buttonDeleteMod.Text = "Delete Selected Mod";
+            this.buttonDeleteMod.UseVisualStyleBackColor = true;
+            this.buttonDeleteMod.Click += new System.EventHandler(this.buttonDeleteMod_Click);
+            // 
             // ModManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 582);
+            this.Controls.Add(this.buttonDeleteMod);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxRepoVersion);
             this.Controls.Add(this.buttonUpdateRepo);
@@ -486,5 +507,6 @@
         private System.Windows.Forms.TextBox textBoxModMcVersion;
         private System.Windows.Forms.TextBox textBoxModNewMcVersion;
         private System.Windows.Forms.ColumnHeader mcVersion;
+        private System.Windows.Forms.Button buttonDeleteMod;
     }
 }

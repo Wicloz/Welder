@@ -10,6 +10,11 @@ namespace Welder {
         public string modslug = "NONE";
         public bool enabled = true;
         public string mcVersion = "NONE";
+        public string modUid {
+            get {
+                return mcVersion + "-" + modslug + "-" + versionLocal;
+            }
+        }
         public string versionLocal = "NA";
         public string versionOnline = "NA";
         public string fileNumberOnline = "NA";

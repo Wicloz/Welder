@@ -8,10 +8,11 @@ namespace Welder {
     class MiscFunctions {
         //Returns true when kar is a digit
         public static bool IsDigit (char kar) {
-            if (kar >= '0' && kar <= '9')
-                return true;
-            else
-                return false;
+            return (kar >= '0' && kar <= '9');
+        }
+
+        public static bool IsValidSite (string url) {
+            return ((url.Contains("http://") || url.Contains("https://")) && url.Contains("."));
         }
 
         //Returns the vesion of a mod without the minecraft version
