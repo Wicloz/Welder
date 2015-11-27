@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace Welder {
     class MiscFunctions {
+        public static MM_SiteConfig GetSiteConfig (string website) {
+            foreach (MM_SiteConfig config in ModManager.sites) {
+                if (website.Contains(config.identifier))
+                    return config;
+            }
+            return new MM_SiteConfig();
+        }
+
         //Returns true when kar is a digit
         public static bool IsDigit (char kar) {
             return (kar >= '0' && kar <= '9');

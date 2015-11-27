@@ -23,13 +23,29 @@ namespace Welder {
         public string websiteCheck = "NONE";
         public string websiteDownload {
             get {
-                return "NONE";
+                return siteConfig.downloadSite
+                    .Replace("%SITE%", websiteCheck)
+                    .Replace("%FILENUMBER%", fileNumberOnline)
+                    .Replace("%FILENAME%", fileNameOnline)
+                    .Replace("%VERSION%", versionOnline);
             }
         }
         public string sitemode {
             get {
-                return "Unsupported";
+                return siteConfig.name;
             }
+        }
+        private MM_SiteConfig siteConfig = new MM_SiteConfig();
+
+        public ModData () {
+            siteConfig = new MM_SiteConfig();
+        }
+        public void Initialise () {
+            UpdateSiteConfig();
+        }
+
+        public void UpdateSiteConfig () {
+            siteConfig = MiscFunctions.GetSiteConfig(websiteCheck);
         }
     }
 }

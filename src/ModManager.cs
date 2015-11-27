@@ -22,6 +22,11 @@ namespace Welder {
 
         public ModManager () {
             InitializeComponent();
+            //Initiate timer
+            Timer timer = new Timer();
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = 100;
+            timer.Start();
         }
 
         private void ModManager_Load (object sender, EventArgs e) {
@@ -37,6 +42,11 @@ namespace Welder {
                 e.Cancel = true;
                 Hide();
             }
+        }
+
+        //Excecutes every 100ms
+        private void timer_Tick (object sender, EventArgs e) {
+
         }
 
         //Loads settings
@@ -157,6 +167,7 @@ namespace Welder {
         //Updates selected mod version site
         private void textBoxModVsite_TextChanged (object sender, EventArgs e) {
             selectedMod.websiteCheck = textBoxModVsite.Text;
+            selectedMod.UpdateSiteConfig();
             listViewMods.Items[selectedIndex].SubItems[2].Text = selectedMod.sitemode;
         }
 

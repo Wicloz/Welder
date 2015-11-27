@@ -26,7 +26,7 @@ namespace Welder {
             UpdateRepoData();
         }
 
-        //Updates the moddate of the current repo
+        //Updates the moddata of the current repo
         private void UpdateRepoData () {
             if (Directory.Exists(repoDir)) {
                 List<string> modSlugFolders = new List<string>(Directory.GetDirectories(repoDir + "/mods"));
@@ -41,6 +41,9 @@ namespace Welder {
                     if (Directory.GetFiles(folder).Length > 0)
                         GetModWithSlug(slug).versionLocal = MiscFunctions.VersionFromRepoMod(Path.GetFileName(Directory.GetFiles(folder)[0]), slug);
                 }
+            }
+            foreach (ModData mod in modlist) {
+                mod.Initialise();
             }
         }
 
