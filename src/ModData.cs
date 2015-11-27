@@ -9,6 +9,7 @@ namespace Welder {
     public class ModData {
         public string modslug = "error";
         public bool enabled = true;
+        public string mcVersion = "error";
         public string versionLocal = "NA";
         public string versionOnline = "NA";
         public string fileNumber = "NA";

@@ -36,22 +36,24 @@ namespace Welder {
 
         //Loads settings
         private void LoadSettings () {
-            if (File.Exists(cd + "/settings.cfg"))
-                settings = SaveLoad.LoadFileXml<MM_Settings>(cd + "/settings.cfg");
+            if (File.Exists(cd + "/settings_mm.cfg"))
+                settings = SaveLoad.LoadFileXml<MM_Settings>(cd + "/settings_mm.cfg");
             if (settings == null)
                 settings = new MM_Settings();
             if (settings.repo == "") {
-                MM_RepoAsker repoAsker = new MM_RepoAsker(settings.repo);
+                MM_RepoAsker repoAsker = new MM_RepoAsker(settings.repo, settings.mainMcVersion);
                 repoAsker.ShowDialog();
                 settings.repo = repoAsker.repoLocation;
+                settings.mainMcVersion = repoAsker.repoVersion;
             }
             SaveSettings();
             textBoxRepo.Text = settings.repo;
+            textBoxRepoVersion.Text = settings.mainMcVersion;
         }
 
         //Saves settings
         private void SaveSettings () {
-            SaveLoad.SaveFileXml(settings, cd + "/settings.cfg");
+            SaveLoad.SaveFileXml(settings, cd + "/settings_mm.cfg");
         }
 
         //Loads site configurations
@@ -66,12 +68,13 @@ namespace Welder {
         //Updates repo location and repo itself
         private void buttonUpdateRepo_Click (object sender, EventArgs e) {
             settings.repo = textBoxRepo.Text;
+            settings.mainMcVersion = textBoxRepoVersion.Text;
             UpdateRepoData();
         }
 
         //Loads the currently selected repo and reloads displays
         private void UpdateRepoData () {
-            repo.LoadRepoFolder(settings.repo);
+            repo.LoadRepoFolder(settings.repo, settings.mainMcVersion);
         }
     }
 }

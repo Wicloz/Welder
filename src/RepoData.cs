@@ -9,6 +9,7 @@ using System.Windows.Forms;
 namespace Welder {
     class RepoData {
         private string repoDir = "";
+        private string repoMcVersion = "";
         private List<ModData> modlist = new List<ModData>();
         private string modlistFile {
             get {
@@ -17,9 +18,10 @@ namespace Welder {
         }
 
         //Saves the currently open repo and loads and updates the new one
-        public void LoadRepoFolder (string repoLocation) {
+        public void LoadRepoFolder (string repoLocation, string repoVersion) {
             SaveModList();
             repoDir = repoLocation;
+            repoMcVersion = repoVersion;
             LoadModList();
             if (Directory.Exists(repoDir)) {
 

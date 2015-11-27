@@ -8,6 +8,7 @@ namespace Welder {
     [Serializable]
     public class MM_Settings {
         public string repo = "";
+        public string mainMcVersion = "";
         public MM_Settings () { }
     }
 }
