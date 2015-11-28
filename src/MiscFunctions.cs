@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Welder {
     enum ActionStates {idle, update, check, find};
 
     class MiscFunctions {
+        //Allows usage of the GetFiles function with multiple searchPattern
+        public static string[] GetFiles (string path, string searchPattern, SearchOption searchOption) {
+            string[] searchPatterns = searchPattern.Split('|');
+            List<string> files = new List<string>();
+            foreach (string sp in searchPatterns)
+                files.AddRange(Directory.GetFiles(path, sp, searchOption));
+            files.Sort();
+            return files.ToArray();
+        }
+
         //Returns the site config for a certain website url
         public static MM_SiteConfig GetSiteConfig (string website) {
             foreach (MM_SiteConfig config in ModManager.sites) {
@@ -39,8 +50,8 @@ namespace Welder {
         //Returns the vesion of a mod without the minecraft version
         public static string VersionFromOnlineMod (string modName, string mcVersion) {
             char[] delims = new char[] {'.', '-', '_'};
-            string version = modName.Split(delims, 2)[1];
-            return ConvertToVersion(version).Replace(mcVersion, "").TrimStart(delims).TrimEnd(delims);
+            //string version = modName.Split(delims, 2)[1];
+            return ConvertToVersion(modName).Replace(mcVersion, "").TrimStart(delims).TrimEnd(delims);
         }
 
         //Returns the vesion of a repo mod

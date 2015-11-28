@@ -37,6 +37,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxCanUpdate = new System.Windows.Forms.CheckBox();
             this.buttonOneDuplicate = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.buttonDeleteMod = new System.Windows.Forms.Button();
             this.buttonAddMod = new System.Windows.Forms.Button();
-            this.checkBoxCanUpdate = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -129,7 +129,7 @@
             // action
             // 
             this.action.Text = "Action";
-            this.action.Width = 112;
+            this.action.Width = 191;
             // 
             // columnHeader1
             // 
@@ -184,6 +184,18 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Mod";
+            // 
+            // checkBoxCanUpdate
+            // 
+            this.checkBoxCanUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxCanUpdate.AutoSize = true;
+            this.checkBoxCanUpdate.Location = new System.Drawing.Point(952, 128);
+            this.checkBoxCanUpdate.Name = "checkBoxCanUpdate";
+            this.checkBoxCanUpdate.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxCanUpdate.TabIndex = 17;
+            this.checkBoxCanUpdate.Text = "Update Available";
+            this.checkBoxCanUpdate.UseVisualStyleBackColor = true;
+            this.checkBoxCanUpdate.CheckedChanged += new System.EventHandler(this.checkBoxCanUpdate_CheckedChanged);
             // 
             // buttonOneDuplicate
             // 
@@ -470,17 +482,6 @@
             this.buttonAddMod.Text = "Add New Mod";
             this.buttonAddMod.UseVisualStyleBackColor = true;
             this.buttonAddMod.Click += new System.EventHandler(this.buttonAddMod_Click);
-            // 
-            // checkBoxCanUpdate
-            // 
-            this.checkBoxCanUpdate.AutoSize = true;
-            this.checkBoxCanUpdate.Location = new System.Drawing.Point(952, 128);
-            this.checkBoxCanUpdate.Name = "checkBoxCanUpdate";
-            this.checkBoxCanUpdate.Size = new System.Drawing.Size(107, 17);
-            this.checkBoxCanUpdate.TabIndex = 17;
-            this.checkBoxCanUpdate.Text = "Update Available";
-            this.checkBoxCanUpdate.UseVisualStyleBackColor = true;
-            this.checkBoxCanUpdate.CheckedChanged += new System.EventHandler(this.checkBoxCanUpdate_CheckedChanged);
             // 
             // ModManager
             // 

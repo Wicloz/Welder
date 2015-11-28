@@ -62,12 +62,8 @@ namespace Welder {
                 case ActionStates.find:
                     foreach (ModData mod in repo.modlist) {
                         if (mod.enabled) {
-                            if (mod.busyFind)
-                                break;
-                            else if (mod.queuedFind) {
+                            if (mod.queuedFind && !mod.busyFind)
                                 mod.FindWebsiteUrl();
-                                break;
-                            }
                         }
                     }
                     break;
@@ -75,7 +71,14 @@ namespace Welder {
                 case ActionStates.check:
                     foreach (ModData mod in repo.modlist) {
                         if (mod.enabled) {
-
+                            if (mod.enabled) {
+                                if (mod.busyCheck)
+                                    break;
+                                else if (mod.queuedCheck) {
+                                    mod.CheckForUpdate();
+                                    break;
+                                }
+                            }
                         }
                     }
                     break;
@@ -83,7 +86,14 @@ namespace Welder {
                 case ActionStates.update:
                     foreach (ModData mod in repo.modlist) {
                         if (mod.enabled) {
-
+                            if (mod.enabled) {
+                                if (mod.busyUpdate)
+                                    break;
+                                else if (mod.queuedUpdate) {
+                                    mod.UpdateMod();
+                                    break;
+                                }
+                            }
                         }
                     }
                     break;
@@ -289,14 +299,12 @@ namespace Welder {
 
         //Set the queued state of update on the selected mod
         private void buttonOneUpdate_Click (object sender, EventArgs e) {
-            if (selectedMod.canUpdate)
-                selectedMod.queuedUpdate = true;
+            selectedMod.queuedUpdate = true;
         }
 
         //Set the queued state of check on the selected mod
         private void buttonOneCheck_Click (object sender, EventArgs e) {
-            if (selectedMod.urlState != "" && selectedMod.urlState != "Unsupported")
-                selectedMod.queuedCheck = true;
+            selectedMod.queuedCheck = true;
         }
 
         //Set the queued state of find on the selected mod
@@ -315,7 +323,7 @@ namespace Welder {
         //Set the queued state of check on all mods
         private void buttonAllCheck_Click (object sender, EventArgs e) {
             foreach (ModData mod in repo.modlist) {
-                if (mod.enabled && mod.urlState != "" && mod.urlState != "Unsupported")
+                if (mod.enabled)
                     mod.queuedCheck = true;
             }
         }

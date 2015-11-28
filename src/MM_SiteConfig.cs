@@ -19,10 +19,10 @@ namespace Welder {
         public string fileNameLineId = "html";
         public string fileNameLinePre = "html";
         public string fileNameLinePost = "html";
-        public string dateLineLineId = "html";
+        public string dateLineId = "html";
         public string dateLinePre = "html";
         public string dateLinePost = "html";
-        public string versionLineLineId = "html";
+        public string versionLineId = "html";
         public string versionLinePre = "html";
         public string versionLinePost = "html";
         public MM_SiteConfig () { }

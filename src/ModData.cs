@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.IO.Compression;
 
 namespace Welder {
     [Serializable]
     public class ModData {
         private MM_SiteConfig siteConfig = new MM_SiteConfig();
+
         public string modslug = "NONE";
         public bool enabled = true;
         public string mcVersion = "NONE";
@@ -33,13 +35,46 @@ namespace Welder {
                     .Replace("%VERSION%", versionOnline);
             }
         }
+
+        public string repoFolder = "NONE";
+        public string downloadFolder {
+            get {
+                return ModManager.cd + "/downloads/" + modslug;
+            }
+        }
+        public string downloadFile {
+            get {
+                return downloadFolder + "/mods/" + fileNameOnline;
+            }
+        }
+        public string packedZipFile {
+            get {
+                return ModManager.cd + "/downloads/" + modslug + "-" + versionOnline + ".zip";
+            }
+        }
+        public string repoZipFolder {
+            get {
+                return repoFolder + "/mods/" + modslug;
+            }
+        }
+        public string repoTargetZip {
+            get {
+                return repoZipFolder + "/" + modslug + "-" + versionOnline + ".zip";
+            }
+        }
+        public string notificationFile {
+            get {
+                return repoFolder + "/ChangedMods.txt";
+            }
+        }
+
+        public bool canUpdate = false;
+        public bool updateList = false;
         public string sitemode {
             get {
                 return siteConfig.name;
             }
         }
-        public bool canUpdate = false;
-        public bool updateList = false;
         public string urlState {
             get {
                 if (websiteCheck == "NONE") {
@@ -107,6 +142,7 @@ namespace Welder {
         //Initialises the moddata
         public void Initialise () {
             UpdateSiteConfig();
+            SetLocalVersion();
         }
 
         //Sets the siteconfig to what it should be
@@ -114,6 +150,14 @@ namespace Welder {
             if (websiteCheck == "")
                 websiteCheck = "NONE";
             siteConfig = MiscFunctions.GetSiteConfig(websiteCheck);
+        }
+
+        //Updates the local version
+        public void SetLocalVersion () {
+            if (Directory.GetFiles(repoZipFolder).Length > 0)
+                versionLocal = MiscFunctions.VersionFromRepoMod(Path.GetFileName(Directory.GetFiles(repoZipFolder)[0]), modslug);
+            else
+                versionLocal = "NA";
         }
 
         //Start an attempt to find a version check website
@@ -187,14 +231,6 @@ namespace Welder {
                     StopFindWebsiteUrl();
                     break;
             }
-        }
-
-        //Stop the finding of the version check website
-        public void StopFindWebsiteUrl () {
-            progress = 0;
-            findMode = 0;
-            queuedFind = false;
-            busyFind = false;
         }
 
         //When a curse internal site has been downloaded
@@ -333,6 +369,179 @@ namespace Welder {
                 url = MiscFunctions.ExtractSection(url, "", "?");
 
             return url;
+        }
+
+        //Atempts to find the newest version of the mod online
+        public void CheckForUpdate () {
+            if (sitemode != "NONE") {
+                busyCheck = true;
+                WebClient client = new WebClient();
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(checkDownloadCompleted);
+                progress = 10;
+                client.DownloadStringAsync(new Uri(websiteCheck));
+            }
+            else {
+                versionOnline = "NA";
+                fileNumberOnline = "NA";
+                fileNameOnline = "NA";
+                releaseDateLatest = "NA";
+                StopCheckForUpdate ();
+            }
+        }
+
+        //When the version check site has been downloaded
+        private void checkDownloadCompleted (object sender, DownloadStringCompletedEventArgs e) {
+            if (e != null && e.Error == null && !String.IsNullOrEmpty(e.Result)) {
+                progress = 100;
+                using (StringReader sr = new StringReader(e.Result)) {
+                    versionOnline = "NA";
+                    fileNumberOnline = "NA";
+                    fileNameOnline = "NA";
+                    releaseDateLatest = "NA";
+
+                    string currentline = sr.ReadLine();
+                    //Loop until the right minecraft version or until the end (in that case: end) 
+                    while (true) {
+                        if (currentline == null) {
+                            versionOnline = "Not Found";
+                            StopCheckForUpdate();
+                            return;
+                        }
+                        else {
+                            currentline = currentline.Trim();
+                            if (currentline.Contains(siteConfig.mcLineId) && mcVersion.StartsWith(MiscFunctions.ExtractSection(currentline, siteConfig.mcLinePre, siteConfig.mcLinePost)))
+                                break;
+                            currentline = sr.ReadLine();
+                        }
+                    }
+
+                    //Loop until the next minecraft version or the end
+                    while (currentline != null && (!currentline.Contains(siteConfig.mcLineId) || mcVersion.StartsWith(MiscFunctions.ExtractSection(currentline, siteConfig.mcLinePre, siteConfig.mcLinePost)))) {
+                        currentline = currentline.Trim();
+
+                        if (releaseDateLatest == "NA" && currentline.Contains(siteConfig.dateLineId))
+                            releaseDateLatest = MiscFunctions.ExtractSection(currentline, siteConfig.dateLinePre, siteConfig.dateLinePost);
+                        if (fileNameOnline == "NA" && currentline.Contains(siteConfig.fileNameLineId))
+                            fileNameOnline = MiscFunctions.ExtractSection(currentline, siteConfig.fileNameLinePre, siteConfig.fileNameLinePost);
+                        if (fileNumberOnline == "NA" && currentline.Contains(siteConfig.fileNumLineId))
+                            fileNumberOnline = MiscFunctions.ExtractSection(currentline, siteConfig.fileNumLinePre, siteConfig.fileNumLinePost);
+                        if (versionOnline == "NA" && currentline.Contains(siteConfig.versionLineId))
+                            versionOnline = MiscFunctions.VersionFromOnlineMod(MiscFunctions.ExtractSection(currentline, siteConfig.versionLinePre, siteConfig.versionLinePost), mcVersion);
+
+                        currentline = sr.ReadLine();
+                    }
+
+                    if (!fileNameOnline.EndsWith(".zip") && !fileNameOnline.EndsWith(".jar"))
+                        fileNameOnline += ".jar";
+
+                    if (versionOnline != "NA" && versionLocal != versionOnline)
+                        canUpdate = true;
+                    else
+                        canUpdate = false;
+                }
+
+                StopCheckForUpdate();
+            }
+            else {
+                StopCheckForUpdate();
+            }
+        }
+
+        //Attempts to download and repack the newest version of the mod
+        public void UpdateMod () {
+            if (Directory.Exists(downloadFolder) && Directory.GetFiles(downloadFolder, "*.*", SearchOption.AllDirectories).Length > 0) {
+                busyUpdate = true;
+                progress = 100;
+                MoveModToRepo();
+            }
+
+            else if (urlState == "Automatic") {
+                busyUpdate = true;
+                if (Directory.Exists(downloadFolder))
+                    Directory.Delete(downloadFolder, true);
+                Directory.CreateDirectory(Path.GetDirectoryName(downloadFile));
+
+                WebClient client = new WebClient();
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(modDownloadCompleted);
+                progress = 10;
+                client.DownloadFileAsync(new Uri(websiteDownload), downloadFile);
+            }
+
+            else
+                StopUpdateMod();
+        }
+
+        //After the mod has been downloaded
+        private void modDownloadCompleted (object sender, System.ComponentModel.AsyncCompletedEventArgs e) {
+            if (File.Exists(downloadFile)) {
+                progress = 100;
+                MoveModToRepo();
+            }
+            else
+                StopUpdateMod();
+        }
+
+        //Renames, packs, moves and creates output for a downloaded mod
+        private void MoveModToRepo () {
+            if (!File.Exists(repoTargetZip)) {
+                //Rename all mod files to lower case
+                foreach (string file in MiscFunctions.GetFiles(downloadFolder, "*.zip|*.jar", SearchOption.AllDirectories)) {
+                    bool succes = false;
+                    while (!succes) {
+                        try {
+                            File.Move(file, file.ToLower());
+                            succes = true;
+                        }
+                        catch { }
+                    }
+                }
+
+                //Create zipfile from root of the folder
+                if (File.Exists(packedZipFile))
+                    File.Delete(packedZipFile);
+                ZipFile.CreateFromDirectory(downloadFolder, packedZipFile);
+
+                //Copy zipfile to solder repo
+                File.Move(packedZipFile, repoTargetZip);
+
+                //Create line in notification file
+                File.AppendAllText(notificationFile, "Mod Updated: " + modslug + " - " + versionOnline + "\n");
+            }
+
+            SetLocalVersion();
+            if (Directory.Exists(downloadFolder))
+                Directory.Delete(downloadFolder, true);
+            canUpdate = false;
+            StopUpdateMod();
+        }
+
+        //Handles the changing of the progress meter for downloads
+        private void client_DownloadProgressChanged (object sender, DownloadProgressChangedEventArgs e) {
+            progress = 10 + Convert.ToInt32(e.ProgressPercentage * 0.8);
+        }
+
+        //Ends the finding of the version check website
+        public void StopFindWebsiteUrl () {
+            progress = 0;
+            findMode = 0;
+            queuedFind = false;
+            busyFind = false;
+        }
+
+        //Ends the checking of the online version
+        public void StopCheckForUpdate () {
+            progress = 0;
+            queuedCheck = false;
+            busyCheck = false;
+        }
+
+        //Ends the downloading of the mod
+        public void StopUpdateMod () {
+            progress = 0;
+            queuedUpdate = false;
+            busyUpdate = false;
         }
     }
 }

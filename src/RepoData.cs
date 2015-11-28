@@ -38,11 +38,10 @@ namespace Welder {
                         mod.mcVersion = repoMcVersion;
                         modlist.Add(mod);
                     }
-                    if (Directory.GetFiles(folder).Length > 0)
-                        GetModWithSlug(slug).versionLocal = MiscFunctions.VersionFromRepoMod(Path.GetFileName(Directory.GetFiles(folder)[0]), slug);
                 }
             }
             foreach (ModData mod in modlist) {
+                mod.repoFolder = repoDir;
                 mod.Initialise();
             }
         }
