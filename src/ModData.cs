@@ -9,6 +9,7 @@ using System.IO;
 namespace Welder {
     [Serializable]
     public class ModData {
+        private MM_SiteConfig siteConfig = new MM_SiteConfig();
         public string modslug = "NONE";
         public bool enabled = true;
         public string mcVersion = "NONE";
@@ -37,12 +38,8 @@ namespace Welder {
                 return siteConfig.name;
             }
         }
-        private MM_SiteConfig siteConfig = new MM_SiteConfig();
-        public bool canUpdate {
-            get {
-                return (versionLocal == versionOnline);
-            }
-        }
+        public bool canUpdate = false;
+        public bool updateList = false;
         public string urlState {
             get {
                 if (websiteCheck == "NONE") {
@@ -59,7 +56,7 @@ namespace Welder {
                 }
             }
         }
-        public string updateState {
+        public string actionState {
             get {
                 if (queuedCheck) {
                     return "Checking for Update ...";
@@ -97,7 +94,7 @@ namespace Welder {
             }
         }
 
-        //Extra websites
+        //Extra debug websites
         public string website1 = "";
         public string website2 = "";
         public string website3 = "";
@@ -114,6 +111,8 @@ namespace Welder {
 
         //Sets the siteconfig to what it should be
         public void UpdateSiteConfig () {
+            if (websiteCheck == "")
+                websiteCheck = "NONE";
             siteConfig = MiscFunctions.GetSiteConfig(websiteCheck);
         }
 
@@ -136,27 +135,32 @@ namespace Welder {
                     break;
                 case 2:
                     website1 = websiteCheck;
+                    updateList = true; //debug
                     websiteCheck = "NONE"; //debug
                     client2.DownloadStringAsync(new Uri("https://www.google.nl/search?q=" + modslug.Replace("-", "+") + "+curseforge"));
                     break;
                 case 3:
                     website2 = websiteCheck;
+                    updateList = true; //debug
                     websiteCheck = "NONE"; //debug
                     client3.DownloadStringAsync(new Uri("https://search.yahoo.com/search?p=" + modslug.Replace("-", "+") + "+curseforge"));
                     break;
                 case 4:
                     website3 = websiteCheck;
+                    updateList = true; //debug
                     websiteCheck = "NONE"; //debug
                     client2.DownloadStringAsync(new Uri("https://www.google.nl/search?q=" + modslug.Replace("-", "+") + "+minecraft"));
                     break;
                 case 5:
                     website4 = websiteCheck;
+                    updateList = true; //debug
                     websiteCheck = "NONE"; //debug
                     client3.DownloadStringAsync(new Uri("https://search.yahoo.com/search?p=" + modslug.Replace("-", "+") + "+minecraft"));
                     break;
 
                 default:
                     website5 = websiteCheck;
+                    updateList = true; //debug
                     websiteCheck = "NONE"; //debug
                     if (website1 != "NONE") {
                         websiteCheck = website1;
@@ -179,6 +183,7 @@ namespace Welder {
                     website4 = website4.Replace(MiscFunctions.GetSiteIdentifier("Curse"), "").Replace(MiscFunctions.GetSiteIdentifier("Forum"), "").Replace("http://", "").Replace("www.", ""); //debug
                     website5 = website5.Replace(MiscFunctions.GetSiteIdentifier("Curse"), "").Replace(MiscFunctions.GetSiteIdentifier("Forum"), "").Replace("http://", "").Replace("www.", ""); //debug
 
+                    UpdateSiteConfig();
                     StopFindWebsiteUrl();
                     break;
             }
@@ -231,7 +236,7 @@ namespace Welder {
         //When a google search result site has been downloaded
         private void findGoogleCompleted (object sender, DownloadStringCompletedEventArgs e) {
             if (e != null && e.Error == null && !String.IsNullOrEmpty(e.Result)) {
-                websiteCheck = GetWebsiteFromResults(e.Result, "<a href=\"", "=\"", "\"");
+                websiteCheck = GetWebsiteFromResults(e.Result, "<a href=\"", "q=", "&");
                 UpdateSiteConfig();
 
                 FindWebsiteUrl(); //debug
@@ -249,7 +254,7 @@ namespace Welder {
         //When a yahoo search result site has been downloaded
         private void findYahooCompleted (object sender, DownloadStringCompletedEventArgs e) {
             if (e != null && e.Error == null && !String.IsNullOrEmpty(e.Result)) {
-                websiteCheck = GetWebsiteFromResults(e.Result, "href=\"", "RU=", "/");
+                websiteCheck = GetWebsiteFromResults(e.Result, "href=\"", "", "\"");
                 UpdateSiteConfig();
 
                 FindWebsiteUrl(); //debug
@@ -283,6 +288,10 @@ namespace Welder {
 
                 for (int i = 0; i < results.Count; i++) {
                     results[i] = MiscFunctions.ExtractSection(results[i], start, end).Replace("%2f", "/").Replace("%3a", ":");
+                }
+
+                for (int i = 0; i < results.Count; i++) {
+                    //results[i] = MiscFunctions.ExtractSection(results[i], start, end).Replace("%2f", "/").Replace("%3a", ":");
                     string foundModname = MiscFunctions.ExtractSection(results[i], "/projects/", "/");
                     if (foundModname == "")
                         foundModname = MiscFunctions.ExtractSection(results[i], "/minecraft-mods/", "/");

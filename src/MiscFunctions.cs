@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Welder {
+    enum ActionStates {idle, update, check, find};
+
     class MiscFunctions {
         //Returns the site config for a certain website url
         public static MM_SiteConfig GetSiteConfig (string website) {

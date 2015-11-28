@@ -25,6 +25,7 @@
         private void InitializeComponent () {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModManager));
             this.listViewMods = new System.Windows.Forms.ListView();
+            this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.slug = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.siteMode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.versionLocal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -34,7 +35,13 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonOneDuplicate = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxModMcVersion = new System.Windows.Forms.TextBox();
+            this.textBoxModNewMcVersion = new System.Windows.Forms.TextBox();
             this.buttonOneCheck = new System.Windows.Forms.Button();
             this.buttonOneFind = new System.Windows.Forms.Button();
             this.labelSiteMode = new System.Windows.Forms.Label();
@@ -56,14 +63,9 @@
             this.buttonUpdateRepo = new System.Windows.Forms.Button();
             this.textBoxRepoVersion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxModNewMcVersion = new System.Windows.Forms.TextBox();
-            this.textBoxModMcVersion = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.buttonOneDuplicate = new System.Windows.Forms.Button();
-            this.mcVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonDeleteMod = new System.Windows.Forms.Button();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonAddMod = new System.Windows.Forms.Button();
+            this.checkBoxCanUpdate = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +100,11 @@
             this.listViewMods.View = System.Windows.Forms.View.Details;
             this.listViewMods.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listViewMods_ItemChecked);
             this.listViewMods.SelectedIndexChanged += new System.EventHandler(this.listViewMods_SelectedIndexChanged);
+            // 
+            // mcVersion
+            // 
+            this.mcVersion.Text = "MC Version";
+            this.mcVersion.Width = 68;
             // 
             // slug
             // 
@@ -144,10 +151,16 @@
             this.columnHeader4.Text = "Website 4";
             this.columnHeader4.Width = 84;
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Website 5";
+            this.columnHeader5.Width = 85;
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.checkBoxCanUpdate);
             this.groupBox1.Controls.Add(this.buttonOneDuplicate);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -172,25 +185,75 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Mod";
             // 
+            // buttonOneDuplicate
+            // 
+            this.buttonOneDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOneDuplicate.Location = new System.Drawing.Point(759, 45);
+            this.buttonOneDuplicate.Name = "buttonOneDuplicate";
+            this.buttonOneDuplicate.Size = new System.Drawing.Size(75, 20);
+            this.buttonOneDuplicate.TabIndex = 16;
+            this.buttonOneDuplicate.Text = "Create New";
+            this.buttonOneDuplicate.UseVisualStyleBackColor = true;
+            this.buttonOneDuplicate.Click += new System.EventHandler(this.buttonOneDuplicate_Click);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(840, 48);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "With MC Version:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "MC Version:";
+            // 
+            // textBoxModMcVersion
+            // 
+            this.textBoxModMcVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxModMcVersion.Location = new System.Drawing.Point(91, 45);
+            this.textBoxModMcVersion.Name = "textBoxModMcVersion";
+            this.textBoxModMcVersion.Size = new System.Drawing.Size(662, 20);
+            this.textBoxModMcVersion.TabIndex = 13;
+            this.textBoxModMcVersion.TextChanged += new System.EventHandler(this.textBoxModMcVersion_TextChanged);
+            // 
+            // textBoxModNewMcVersion
+            // 
+            this.textBoxModNewMcVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxModNewMcVersion.Location = new System.Drawing.Point(935, 45);
+            this.textBoxModNewMcVersion.Name = "textBoxModNewMcVersion";
+            this.textBoxModNewMcVersion.Size = new System.Drawing.Size(118, 20);
+            this.textBoxModNewMcVersion.TabIndex = 12;
+            // 
             // buttonOneCheck
             // 
             this.buttonOneCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneCheck.Location = new System.Drawing.Point(409, 123);
+            this.buttonOneCheck.Location = new System.Drawing.Point(410, 123);
             this.buttonOneCheck.Name = "buttonOneCheck";
-            this.buttonOneCheck.Size = new System.Drawing.Size(319, 25);
+            this.buttonOneCheck.Size = new System.Drawing.Size(265, 25);
             this.buttonOneCheck.TabIndex = 11;
             this.buttonOneCheck.Text = "Check For Update";
             this.buttonOneCheck.UseVisualStyleBackColor = true;
+            this.buttonOneCheck.Click += new System.EventHandler(this.buttonOneCheck_Click);
             // 
             // buttonOneFind
             // 
             this.buttonOneFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneFind.Location = new System.Drawing.Point(734, 123);
+            this.buttonOneFind.Location = new System.Drawing.Point(681, 123);
             this.buttonOneFind.Name = "buttonOneFind";
-            this.buttonOneFind.Size = new System.Drawing.Size(319, 25);
+            this.buttonOneFind.Size = new System.Drawing.Size(265, 25);
             this.buttonOneFind.TabIndex = 10;
             this.buttonOneFind.Text = "Find Website";
             this.buttonOneFind.UseVisualStyleBackColor = true;
+            this.buttonOneFind.Click += new System.EventHandler(this.buttonOneFind_Click);
             // 
             // labelSiteMode
             // 
@@ -237,10 +300,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOneUpdate.Location = new System.Drawing.Point(6, 123);
             this.buttonOneUpdate.Name = "buttonOneUpdate";
-            this.buttonOneUpdate.Size = new System.Drawing.Size(397, 25);
+            this.buttonOneUpdate.Size = new System.Drawing.Size(398, 25);
             this.buttonOneUpdate.TabIndex = 5;
             this.buttonOneUpdate.Text = "Update Mod";
             this.buttonOneUpdate.UseVisualStyleBackColor = true;
+            this.buttonOneUpdate.Click += new System.EventHandler(this.buttonOneUpdate_Click);
             // 
             // textBoxModDsite
             // 
@@ -313,6 +377,7 @@
             this.buttonAllCheck.TabIndex = 1;
             this.buttonAllCheck.Text = "Check For Updates";
             this.buttonAllCheck.UseVisualStyleBackColor = true;
+            this.buttonAllCheck.Click += new System.EventHandler(this.buttonAllCheck_Click);
             // 
             // buttonAllUpdate
             // 
@@ -323,6 +388,7 @@
             this.buttonAllUpdate.TabIndex = 0;
             this.buttonAllUpdate.Text = "Update Mods";
             this.buttonAllUpdate.UseVisualStyleBackColor = true;
+            this.buttonAllUpdate.Click += new System.EventHandler(this.buttonAllUpdate_Click);
             // 
             // buttonAllFind
             // 
@@ -333,6 +399,7 @@
             this.buttonAllFind.TabIndex = 2;
             this.buttonAllFind.Text = "Find Missing Websites";
             this.buttonAllFind.UseVisualStyleBackColor = true;
+            this.buttonAllFind.Click += new System.EventHandler(this.buttonAllFind_Click);
             // 
             // textBoxRepo
             // 
@@ -381,81 +448,46 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Primary Minecraft Version:";
             // 
-            // textBoxModNewMcVersion
-            // 
-            this.textBoxModNewMcVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxModNewMcVersion.Location = new System.Drawing.Point(935, 45);
-            this.textBoxModNewMcVersion.Name = "textBoxModNewMcVersion";
-            this.textBoxModNewMcVersion.Size = new System.Drawing.Size(118, 20);
-            this.textBoxModNewMcVersion.TabIndex = 12;
-            // 
-            // textBoxModMcVersion
-            // 
-            this.textBoxModMcVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxModMcVersion.Location = new System.Drawing.Point(91, 45);
-            this.textBoxModMcVersion.Name = "textBoxModMcVersion";
-            this.textBoxModMcVersion.Size = new System.Drawing.Size(662, 20);
-            this.textBoxModMcVersion.TabIndex = 13;
-            this.textBoxModMcVersion.TextChanged += new System.EventHandler(this.textBoxModMcVersion_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "MC Version:";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(840, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "With MC Version:";
-            // 
-            // buttonOneDuplicate
-            // 
-            this.buttonOneDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneDuplicate.Location = new System.Drawing.Point(759, 45);
-            this.buttonOneDuplicate.Name = "buttonOneDuplicate";
-            this.buttonOneDuplicate.Size = new System.Drawing.Size(75, 20);
-            this.buttonOneDuplicate.TabIndex = 16;
-            this.buttonOneDuplicate.Text = "Create New";
-            this.buttonOneDuplicate.UseVisualStyleBackColor = true;
-            this.buttonOneDuplicate.Click += new System.EventHandler(this.buttonOneDuplicate_Click);
-            // 
-            // mcVersion
-            // 
-            this.mcVersion.Text = "MC Version";
-            this.mcVersion.Width = 68;
-            // 
             // buttonDeleteMod
             // 
-            this.buttonDeleteMod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeleteMod.Location = new System.Drawing.Point(12, 547);
+            this.buttonDeleteMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDeleteMod.Location = new System.Drawing.Point(783, 547);
             this.buttonDeleteMod.Name = "buttonDeleteMod";
-            this.buttonDeleteMod.Size = new System.Drawing.Size(1224, 23);
+            this.buttonDeleteMod.Size = new System.Drawing.Size(453, 23);
             this.buttonDeleteMod.TabIndex = 8;
             this.buttonDeleteMod.Text = "Delete Selected Mod";
             this.buttonDeleteMod.UseVisualStyleBackColor = true;
             this.buttonDeleteMod.Click += new System.EventHandler(this.buttonDeleteMod_Click);
             // 
-            // columnHeader5
+            // buttonAddMod
             // 
-            this.columnHeader5.Text = "Website 5";
-            this.columnHeader5.Width = 85;
+            this.buttonAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddMod.Location = new System.Drawing.Point(12, 547);
+            this.buttonAddMod.Name = "buttonAddMod";
+            this.buttonAddMod.Size = new System.Drawing.Size(765, 23);
+            this.buttonAddMod.TabIndex = 9;
+            this.buttonAddMod.Text = "Add New Mod";
+            this.buttonAddMod.UseVisualStyleBackColor = true;
+            this.buttonAddMod.Click += new System.EventHandler(this.buttonAddMod_Click);
+            // 
+            // checkBoxCanUpdate
+            // 
+            this.checkBoxCanUpdate.AutoSize = true;
+            this.checkBoxCanUpdate.Location = new System.Drawing.Point(952, 128);
+            this.checkBoxCanUpdate.Name = "checkBoxCanUpdate";
+            this.checkBoxCanUpdate.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxCanUpdate.TabIndex = 17;
+            this.checkBoxCanUpdate.Text = "Update Available";
+            this.checkBoxCanUpdate.UseVisualStyleBackColor = true;
+            this.checkBoxCanUpdate.CheckedChanged += new System.EventHandler(this.checkBoxCanUpdate_CheckedChanged);
             // 
             // ModManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 582);
+            this.Controls.Add(this.buttonAddMod);
             this.Controls.Add(this.buttonDeleteMod);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxRepoVersion);
@@ -520,5 +552,7 @@
         private System.Windows.Forms.ColumnHeader mcVersion;
         private System.Windows.Forms.Button buttonDeleteMod;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Button buttonAddMod;
+        private System.Windows.Forms.CheckBox checkBoxCanUpdate;
     }
 }
