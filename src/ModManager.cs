@@ -46,6 +46,12 @@ namespace Welder {
 
         //Main loop for mod actions, excecutes every 100ms
         private void timer_Tick (object sender, EventArgs e) {
+            if (repo.mustReloadListView) {
+                repo.mustReloadListView = false;
+                ReloadModList();
+                return;
+            }
+
             ActionStates state = ActionStates.idle;
             foreach (ModData mod in repo.modlist) {
                 if (mod.enabled) {
@@ -123,6 +129,9 @@ namespace Welder {
             SaveSettings();
             textBoxRepo.Text = settings.repo;
             textBoxRepoVersion.Text = settings.mainMcVersion;
+            textBoxSolderUrl.Text = settings.solderUrl;
+            textBoxSolderMail.Text = settings.solderMail;
+            textBoxSolderPass.Text = settings.solderPass;
         }
 
         //Saves settings
@@ -351,6 +360,31 @@ namespace Welder {
                 if (mod.enabled && mod.urlState == "")
                     mod.queuedFind = true;
             }
+        }
+
+        //Sets the link to the online solder list
+        private void textBoxSolderUrl_TextChanged (object sender, EventArgs e) {
+            settings.solderUrl = textBoxSolderUrl.Text;
+        }
+
+        //Sets the email addres for logging into solder
+        private void textBoxSolderMail_TextChanged (object sender, EventArgs e) {
+            settings.solderMail = textBoxSolderMail.Text;
+        }
+
+        //Sets the password for logging into solder
+        private void textBoxSolderPass_TextChanged (object sender, EventArgs e) {
+            settings.solderPass = textBoxSolderPass.Text;
+        }
+
+        //Downlads the solder modlist and adds all missing mods
+        private void buttonSolderSync_Click (object sender, EventArgs e) {
+            if (!settings.solderUrl.EndsWith("/")) {
+                settings.solderUrl += "/";
+                textBoxSolderUrl.Text = settings.solderUrl;
+            }
+            if (MiscFunctions.IsValidSite(settings.solderUrl))
+                repo.UpdateListFromSolder(settings.solderUrl, settings.solderMail, settings.solderPass);
         }
     }
 }

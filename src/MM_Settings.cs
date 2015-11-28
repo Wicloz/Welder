@@ -9,6 +9,9 @@ namespace Welder {
     public class MM_Settings {
         public string repo = "";
         public string mainMcVersion = "";
+        public string solderUrl = "";
+        public string solderMail = "";
+        public string solderPass = "";
         public MM_Settings () { }
     }
 }

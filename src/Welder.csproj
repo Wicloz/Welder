@@ -53,6 +53,9 @@
     <Compile Include="ConfigPackager.Designer.cs">
       <DependentUpon>ConfigPackager.cs</DependentUpon>
     </Compile>
+    <Compile Include="CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MiscFunctions.cs" />
     <Compile Include="MM_RepoAsker.cs">
       <SubType>Form</SubType>

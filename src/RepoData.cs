@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Net;
 
 namespace Welder {
     class RepoData {
         private string repoDir = "";
         private string repoMcVersion = "";
+        private string solderUrl = "";
         public List<ModData> modlist = new List<ModData>();
+        public bool mustReloadListView = false;
         private string modlistFile {
             get {
                 return repoDir + "/WelderModlist.dat";
@@ -22,6 +25,7 @@ namespace Welder {
             SaveModList();
             repoDir = repoLocation;
             repoMcVersion = repoVersion;
+            solderUrl = "";
             LoadModList();
             UpdateRepoData();
         }
@@ -72,6 +76,45 @@ namespace Welder {
         public void SaveModList () {
             if (Directory.Exists(repoDir))
                 SaveLoad.SaveFileBf(modlist, modlistFile);
+        }
+
+        //Downlads the solder modlist and adds all missing mods
+        public void UpdateListFromSolder (string link, string email, string password) {
+            solderUrl = link;
+            string loginAddress = solderUrl + "login";
+            System.Collections.Specialized.NameValueCollection loginData = new System.Collections.Specialized.NameValueCollection {{"email", email}, {"password", password}};
+
+            CookieAwareWebClient client = new CookieAwareWebClient();
+            client.UploadValues(loginAddress, loginData);
+
+            client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(solderDownloadCompleted);
+            client.DownloadStringAsync(new Uri(solderUrl + "mod/list"));
+        }
+
+        //Adds all missing mods from the downloaded solder list
+        private void solderDownloadCompleted (object sender, DownloadStringCompletedEventArgs e) {
+            if (e != null && e.Error == null && !String.IsNullOrEmpty(e.Result)) {
+                List<string> modslugs = new List<string>();
+                using (StringReader sr = new StringReader(e.Result)) {
+                    string currentline = sr.ReadLine();
+                    while (currentline != null) {
+                        currentline = currentline.Trim();
+                        if (currentline.Contains("<a href=\"" + solderUrl + "mod/view/"))
+                            modslugs.Add(MiscFunctions.ExtractSection(currentline, "</a> (", ")"));
+                        currentline = sr.ReadLine();
+                    }
+                }
+                foreach (string slug in modslugs) {
+                    if (slug != "" && GetModWithSlug(slug) == null) {
+                        ModData newMod = new ModData();
+                        newMod.modslug = slug;
+                        newMod.mcVersion = repoMcVersion;
+                        newMod.repoFolder = repoDir;
+                        modlist.Add(newMod);
+                    }
+                }
+            }
+            mustReloadListView = true;
         }
     }
 }

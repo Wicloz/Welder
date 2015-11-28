@@ -66,6 +66,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.buttonDeleteMod = new System.Windows.Forms.Button();
             this.buttonAddMod = new System.Windows.Forms.Button();
+            this.textBoxSolderUrl = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.buttonSolderSync = new System.Windows.Forms.Button();
+            this.textBoxSolderPass = new System.Windows.Forms.TextBox();
+            this.textBoxSolderMail = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +101,7 @@
             this.listViewMods.Location = new System.Drawing.Point(12, 198);
             this.listViewMods.MultiSelect = false;
             this.listViewMods.Name = "listViewMods";
-            this.listViewMods.Size = new System.Drawing.Size(1224, 343);
+            this.listViewMods.Size = new System.Drawing.Size(1224, 288);
             this.listViewMods.TabIndex = 0;
             this.listViewMods.UseCompatibleStateImageBehavior = false;
             this.listViewMods.View = System.Windows.Forms.View.Details;
@@ -463,7 +470,7 @@
             // buttonDeleteMod
             // 
             this.buttonDeleteMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeleteMod.Location = new System.Drawing.Point(783, 547);
+            this.buttonDeleteMod.Location = new System.Drawing.Point(783, 492);
             this.buttonDeleteMod.Name = "buttonDeleteMod";
             this.buttonDeleteMod.Size = new System.Drawing.Size(453, 23);
             this.buttonDeleteMod.TabIndex = 8;
@@ -475,7 +482,7 @@
             // 
             this.buttonAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddMod.Location = new System.Drawing.Point(12, 547);
+            this.buttonAddMod.Location = new System.Drawing.Point(12, 492);
             this.buttonAddMod.Name = "buttonAddMod";
             this.buttonAddMod.Size = new System.Drawing.Size(765, 23);
             this.buttonAddMod.TabIndex = 9;
@@ -483,11 +490,88 @@
             this.buttonAddMod.UseVisualStyleBackColor = true;
             this.buttonAddMod.Click += new System.EventHandler(this.buttonAddMod_Click);
             // 
+            // textBoxSolderUrl
+            // 
+            this.textBoxSolderUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSolderUrl.Location = new System.Drawing.Point(81, 521);
+            this.textBoxSolderUrl.Name = "textBoxSolderUrl";
+            this.textBoxSolderUrl.Size = new System.Drawing.Size(726, 20);
+            this.textBoxSolderUrl.TabIndex = 10;
+            this.textBoxSolderUrl.TextChanged += new System.EventHandler(this.textBoxSolderUrl_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 524);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Solder Link:";
+            // 
+            // buttonSolderSync
+            // 
+            this.buttonSolderSync.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSolderSync.Location = new System.Drawing.Point(12, 547);
+            this.buttonSolderSync.Name = "buttonSolderSync";
+            this.buttonSolderSync.Size = new System.Drawing.Size(1224, 23);
+            this.buttonSolderSync.TabIndex = 12;
+            this.buttonSolderSync.Text = "Update Modlist From Solder";
+            this.buttonSolderSync.UseVisualStyleBackColor = true;
+            this.buttonSolderSync.Click += new System.EventHandler(this.buttonSolderSync_Click);
+            // 
+            // textBoxSolderPass
+            // 
+            this.textBoxSolderPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSolderPass.Location = new System.Drawing.Point(1076, 521);
+            this.textBoxSolderPass.Name = "textBoxSolderPass";
+            this.textBoxSolderPass.Size = new System.Drawing.Size(160, 20);
+            this.textBoxSolderPass.TabIndex = 13;
+            this.textBoxSolderPass.TextChanged += new System.EventHandler(this.textBoxSolderPass_TextChanged);
+            // 
+            // textBoxSolderMail
+            // 
+            this.textBoxSolderMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSolderMail.Location = new System.Drawing.Point(848, 521);
+            this.textBoxSolderMail.Name = "textBoxSolderMail";
+            this.textBoxSolderMail.Size = new System.Drawing.Size(160, 20);
+            this.textBoxSolderMail.TabIndex = 14;
+            this.textBoxSolderMail.TextChanged += new System.EventHandler(this.textBoxSolderMail_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1014, 524);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(56, 13);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "Password:";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(813, 524);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Mail:";
+            // 
             // ModManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1248, 582);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBoxSolderMail);
+            this.Controls.Add(this.textBoxSolderPass);
+            this.Controls.Add(this.buttonSolderSync);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBoxSolderUrl);
             this.Controls.Add(this.buttonAddMod);
             this.Controls.Add(this.buttonDeleteMod);
             this.Controls.Add(this.label5);
@@ -555,5 +639,12 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button buttonAddMod;
         private System.Windows.Forms.CheckBox checkBoxCanUpdate;
+        private System.Windows.Forms.TextBox textBoxSolderUrl;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonSolderSync;
+        private System.Windows.Forms.TextBox textBoxSolderPass;
+        private System.Windows.Forms.TextBox textBoxSolderMail;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

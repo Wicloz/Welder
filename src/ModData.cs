@@ -68,7 +68,20 @@ namespace Welder {
             }
         }
 
-        public bool canUpdate = false;
+        public bool _canUpdate = false;
+        public bool canUpdate {
+            get {
+                return _canUpdate;
+            }
+            set {
+                _canUpdate = value;
+                if (_canUpdate)
+                    Directory.CreateDirectory(Path.GetDirectoryName(downloadFile));
+                else if (Directory.Exists(downloadFolder))
+                    Directory.Delete(downloadFolder, true);
+
+            }
+        }
         public bool updateList = false;
         public string sitemode {
             get {
