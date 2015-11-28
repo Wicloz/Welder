@@ -154,7 +154,7 @@ namespace Welder {
 
         //Updates the local version
         public void SetLocalVersion () {
-            if (Directory.GetFiles(repoZipFolder).Length > 0)
+            if (Directory.Exists(repoZipFolder) && Directory.GetFiles(repoZipFolder).Length > 0)
                 versionLocal = MiscFunctions.VersionFromRepoMod(Path.GetFileName(Directory.GetFiles(repoZipFolder)[0]), modslug);
             else
                 versionLocal = "NA";
@@ -485,6 +485,7 @@ namespace Welder {
 
         //Renames, packs, moves and creates output for a downloaded mod
         private void MoveModToRepo () {
+            Directory.CreateDirectory(repoZipFolder);
             if (!File.Exists(repoTargetZip)) {
                 //Rename all mod files to lower case
                 foreach (string file in MiscFunctions.GetFiles(downloadFolder, "*.zip|*.jar", SearchOption.AllDirectories)) {

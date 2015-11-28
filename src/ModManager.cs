@@ -18,7 +18,7 @@ namespace Welder {
         public static List<MM_SiteConfig> sites = new List<MM_SiteConfig>();
         private ModData selectedMod = new ModData();
         private int selectedIndex = 0;
-        private bool updatingList = false;
+        private bool updatingData = false;
 
         public ModManager () {
             InitializeComponent();
@@ -44,7 +44,7 @@ namespace Welder {
             }
         }
 
-        //Excecutes every 100ms
+        //Main loop for mod actions, excecutes every 100ms
         private void timer_Tick (object sender, EventArgs e) {
             ActionStates state = ActionStates.idle;
             foreach (ModData mod in repo.modlist) {
@@ -154,7 +154,7 @@ namespace Welder {
 
         //Reloads the mod list view and selected mod info
         private void ReloadModList () {
-            updatingList = true;
+            updatingData = true;
             listViewMods.Items.Clear();
             listViewMods.SelectedIndices.Clear();
             selectedMod = new ModData();
@@ -182,7 +182,7 @@ namespace Welder {
             }
 
             SetModInfoBox();
-            updatingList = false;
+            updatingData = false;
         }
 
         //Reloads the line of the modlistview at a certain index
@@ -205,6 +205,7 @@ namespace Welder {
 
         //Sets the currently selected mod info
         private void SetModInfoBox () {
+            updatingData = true;
             if (selectedMod.modslug == "NONE") {
                 textBoxModSlug.Text = "";
                 textBoxModMcVersion.Text = "";
@@ -221,11 +222,12 @@ namespace Welder {
                 textBoxModDsite.Text = selectedMod.websiteDownload;
                 checkBoxCanUpdate.Checked = selectedMod.canUpdate;
             }
+            updatingData = false;
         }
 
         //Selects a new mod and reloads information
         private void listViewMods_SelectedIndexChanged (object sender, EventArgs e) {
-            if (listViewMods.SelectedIndices.Count > 0) {
+            if (!updatingData && listViewMods.SelectedIndices.Count > 0) {
                 selectedIndex = listViewMods.SelectedIndices[0];
                 selectedMod = repo.modlist[selectedIndex];
                 SetModInfoBox();
@@ -234,27 +236,41 @@ namespace Welder {
 
         //Changes the enabled state of the checked mod
         private void listViewMods_ItemChecked (object sender, ItemCheckedEventArgs e) {
-            if (!updatingList)
+            if (!updatingData)
                 repo.modlist[e.Item.Index].enabled = e.Item.Checked;
         }
 
-        //Updates selecte mod mc version
+        //Changes selected mod modslug
+        private void textBoxModSlug_TextChanged (object sender, EventArgs e) {
+            if (!updatingData) {
+                selectedMod.modslug = textBoxModSlug.Text;
+                listViewMods.Items[selectedIndex].SubItems[1].Text = selectedMod.modslug;
+            }
+        }
+
+        //Updates selected mod mc version
         private void textBoxModMcVersion_TextChanged (object sender, EventArgs e) {
-            selectedMod.mcVersion = textBoxModMcVersion.Text;
-            listViewMods.Items[selectedIndex].SubItems[0].Text = selectedMod.mcVersion;
+            if (!updatingData) {
+                selectedMod.mcVersion = textBoxModMcVersion.Text;
+                listViewMods.Items[selectedIndex].SubItems[0].Text = selectedMod.mcVersion;
+            }
         }
 
         //Updates selected mod version site
         private void textBoxModVsite_TextChanged (object sender, EventArgs e) {
-            selectedMod.websiteCheck = textBoxModVsite.Text;
-            selectedMod.UpdateSiteConfig();
-            listViewMods.Items[selectedIndex].SubItems[2].Text = selectedMod.urlState;
+            if (!updatingData) {
+                selectedMod.websiteCheck = textBoxModVsite.Text;
+                selectedMod.UpdateSiteConfig();
+                listViewMods.Items[selectedIndex].SubItems[2].Text = selectedMod.urlState;
+            }
         }
 
         //Changes selected mod can update state
         private void checkBoxCanUpdate_CheckedChanged (object sender, EventArgs e) {
-            selectedMod.canUpdate = checkBoxCanUpdate.Checked;
-            listViewMods.Items[selectedIndex].SubItems[5].Text = selectedMod.actionState;
+            if (!updatingData) {
+                selectedMod.canUpdate = checkBoxCanUpdate.Checked;
+                listViewMods.Items[selectedIndex].SubItems[5].Text = selectedMod.actionState;
+            }
         }
 
         //Opens google search on mod slug
@@ -293,6 +309,7 @@ namespace Welder {
             ModData newMod = new ModData();
             newMod.enabled = false;
             newMod.mcVersion = settings.mainMcVersion;
+            newMod.repoFolder = settings.repo;
             repo.modlist.Add(newMod);
             ReloadModList();
         }

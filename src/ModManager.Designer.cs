@@ -344,9 +344,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxModSlug.Location = new System.Drawing.Point(91, 19);
             this.textBoxModSlug.Name = "textBoxModSlug";
-            this.textBoxModSlug.ReadOnly = true;
             this.textBoxModSlug.Size = new System.Drawing.Size(881, 20);
             this.textBoxModSlug.TabIndex = 2;
+            this.textBoxModSlug.TextChanged += new System.EventHandler(this.textBoxModSlug_TextChanged);
             // 
             // label1
             // 
