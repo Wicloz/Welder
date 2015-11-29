@@ -75,6 +75,7 @@ namespace Welder {
             textBoxMcVersion.Text = selectedServer.mcVersion;
             textBoxSourceFolder.Text = selectedServer.sourceFolder;
             textBoxDestFolder.Text = selectedServer.destFolder;
+            textBoxArguments.Text = selectedServer.arguments;
             checkBoxAddBackup.Checked = selectedServer.addBackup;
             updatingData = false;
         }
@@ -133,6 +134,12 @@ namespace Welder {
         private void textBoxDestFolder_TextChanged (object sender, EventArgs e) {
             if (!updatingData)
                 selectedServer.destFolder = textBoxDestFolder.Text;
+        }
+
+        //Updates selected server startup arguments
+        private void textBoxArguments_TextChanged (object sender, EventArgs e) {
+            if (!updatingData)
+                selectedServer.arguments = textBoxArguments.Text;
         }
 
         //Updates selected server add backup bool

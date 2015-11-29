@@ -45,6 +45,8 @@
             this.buttonCleanCopy = new System.Windows.Forms.Button();
             this.buttonAddServer = new System.Windows.Forms.Button();
             this.buttonRemoveServer = new System.Windows.Forms.Button();
+            this.textBoxArguments = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,10 +78,10 @@
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(188, 196);
+            this.richTextBox1.Location = new System.Drawing.Point(188, 218);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(888, 373);
+            this.richTextBox1.Size = new System.Drawing.Size(888, 351);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -87,6 +89,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.textBoxArguments);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBoxDestFolder);
             this.groupBox1.Controls.Add(this.checkBoxAddBackup);
@@ -100,7 +104,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(188, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(888, 178);
+            this.groupBox1.Size = new System.Drawing.Size(888, 200);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Server Information";
@@ -127,7 +131,7 @@
             // checkBoxAddBackup
             // 
             this.checkBoxAddBackup.AutoSize = true;
-            this.checkBoxAddBackup.Location = new System.Drawing.Point(153, 149);
+            this.checkBoxAddBackup.Location = new System.Drawing.Point(153, 175);
             this.checkBoxAddBackup.Name = "checkBoxAddBackup";
             this.checkBoxAddBackup.Size = new System.Drawing.Size(174, 17);
             this.checkBoxAddBackup.TabIndex = 8;
@@ -277,6 +281,25 @@
             this.buttonRemoveServer.UseVisualStyleBackColor = true;
             this.buttonRemoveServer.Click += new System.EventHandler(this.buttonRemoveServer_Click);
             // 
+            // textBoxArguments
+            // 
+            this.textBoxArguments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxArguments.Location = new System.Drawing.Point(153, 149);
+            this.textBoxArguments.Name = "textBoxArguments";
+            this.textBoxArguments.Size = new System.Drawing.Size(729, 20);
+            this.textBoxArguments.TabIndex = 11;
+            this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 152);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Server Arguments:";
+            // 
             // ServerBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,5 +348,7 @@
         private System.Windows.Forms.Button buttonCleanCopy;
         private System.Windows.Forms.Button buttonAddServer;
         private System.Windows.Forms.Button buttonRemoveServer;
+        private System.Windows.Forms.TextBox textBoxArguments;
+        private System.Windows.Forms.Label label6;
     }
 }

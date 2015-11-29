@@ -15,6 +15,7 @@ namespace Welder {
         public string mcVersion = "";
         public string sourceFolder = "";
         public string destFolder = "";
+        public string arguments = "-Xmn2G -Xss4M -Xms4G -Xmx4G -XX:+UseLargePages -XX:+AggressiveOpts -XX:+UseFastAccessorMethods -XX:+OptimizeStringConcat -XX:+UseBiasedLocking -Xincgc -XX:MaxGCPauseMillis=10 -XX:SoftRefLRUPolicyMSPerMB=10000 -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=10 -Djava.net.preferIPv4Stack=true -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true";
         public bool addBackup = true;
 
         public string serverSlug {
@@ -53,13 +54,56 @@ namespace Welder {
 
         //Builds a server release
         public void BuildServer () {
-            if (Directory.Exists(serverFolder))
-                Directory.Delete(serverFolder, true);
+            if (Directory.Exists(serverFolder)) {
+                foreach (string file in Directory.GetFiles(serverFolder, "*.*", SearchOption.AllDirectories)) {
+                    if (Path.GetFileName(file) != "server.properties")
+                        File.Delete(file);
+                }
+                MiscFunctions.RemoveEmptyFolders(serverFolder, false);
+            }
             Directory.CreateDirectory(serverFolder);
 
-            using (WebClient client = new WebClient()) {
+            List<string> copyFiles = new List<string>();
+            string[] copyFolders = new string[] {"betterrecords", "Flan", "hats", "config", "scripts"};
 
+            foreach (string file in Directory.GetFiles(sourceFolder, "*.*", SearchOption.AllDirectories)) {
+                foreach (string copyFolder in copyFolders) {
+                    if (file.StartsWith(sourceFolder + "\\" + copyFolder + "\\")) {
+                        copyFiles.Add(file);
+                        break;
+                    }
+                }
+                if ((file.StartsWith(sourceFolder + "\\mods\\") || file.StartsWith(sourceFolder + "\\coremods\\")) && !SB_ExceptionManager.IsException(Path.GetFileName(file)))
+                    copyFiles.Add(file);
             }
+
+            foreach (string file in copyFiles) {
+                string newFile = file.Replace(sourceFolder, serverFolder);
+                Directory.CreateDirectory(Path.GetDirectoryName(newFile));
+                File.Copy(file, newFile);
+            }
+
+            File.WriteAllText(serverFolder + "/eula.txt", "#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).\neula = true\n");
+            File.AppendAllText(serverFolder + "/RUN.bat", "@ECHO OFF\n\n");
+            if (addBackup)
+                File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Backing up world ...\nrmdir backups\\backup_before / Q / S\nrobocopy world backups\\backup_before / e\n\n");
+            File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Starting server ...\njava " + arguments + " -jar modpack.jar nogui\n\n");
+            if (addBackup)
+                File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Backing up world ...\nrmdir backups\\backup_after / Q / S\nrobocopy world backups\\backup_after / e\n\n");
+            File.AppendAllText(serverFolder + "/RUN.bat", "pause\nexit");
+            if (addBackup) {
+                Directory.CreateDirectory(serverFolder + "/backups");
+                File.WriteAllText(serverFolder + "/backups/backups.txt", "backups folder\n");
+            }
+            if (File.Exists(sourceFolder + "/bin/modpack.jar"))
+                File.Copy(sourceFolder + "/bin/modpack.jar", serverFolder + "/modpack.jar");
+
+            using (WebClient client = new WebClient()) {
+                client.DownloadFile(serverJarOnline, serverJarLocal);
+                client.DownloadFile("https://dl.dropboxusercontent.com/u/46484032/TMC/ForgeLibs.zip", serverFolder + "/libraries.zip");
+            }
+            ZipFile.ExtractToDirectory(serverFolder + "/libraries.zip", serverFolder + "/libraries");
+            File.Delete(serverFolder + "/libraries.zip");
 
             MiscFunctions.RemoveEmptyFolders(serverFolder, false);
         }

@@ -11,12 +11,14 @@ namespace Welder {
     class MiscFunctions {
         //Deletes only empty folders in the specified root
         public static void RemoveEmptyFolders (string root, bool includeRoot) {
-            foreach (string folder in Directory.GetDirectories(root)) {
-                RemoveEmptyFolders(folder, true);
-            }
-            if (Directory.GetFiles(root).Length == 0 && Directory.GetDirectories(root).Length == 0) {
-                if (includeRoot)
-                    Directory.Delete(root);
+            if (Directory.Exists(root)) {
+                foreach (string folder in Directory.GetDirectories(root)) {
+                    RemoveEmptyFolders(folder, true);
+                }
+                if (Directory.GetFiles(root).Length == 0 && Directory.GetDirectories(root).Length == 0) {
+                    if (includeRoot)
+                        Directory.Delete(root);
+                }
             }
         }
 

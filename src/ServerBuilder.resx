@@ -119,18 +119,19 @@
   </resheader>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>1) Fill in the modpack name and minecraft version
-2) Fill in the root directory of the modpack in the .technic/modpacks folder
-3) Fill in the folder that will contain the packaged servers
-4) Fill in the modpack version equal to that of the currently installed pack in the source folder
+2) Edit the default server java arguments
+3) Fill in the root directory of the modpack in the .technic/modpacks folder
+4) Fill in the folder that will contain the packaged servers
+5) Fill in the modpack version equal to that of the currently installed pack in the source folder
 
-5) Click the "Build Server" button
-6) Download the same version of minecraft forge as the modpack, rename to "modpack.jar" and copy to the server folder
+6) Click the "Build Server" button
+7) If there are any mods installed in modpack.jar, delete the existing modpack.jar in the server and replace it by a new one with server mods installed
 
-7) Click the "Create Copy for Testing" button and run the server
-8) If everything works, click teh "Remove Copy" button to copy the server.properties back tot the server folder and delete the testing folder
-9) Don't forget to change any relevant option in the server.properties file
+8) Click the "Create Copy for Testing" button and run the server
+9) If everything works, click the "Remove Copy" button to copy the server.properties back tot the server folder and delete the testing folder
+10) Don't forget to change any relevant option in the server.properties file
 
-10) Click the "Package Server" button to create a server package for this modpack version</value>
+11) Click the "Package Server" button to create a server package for this modpack version</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
