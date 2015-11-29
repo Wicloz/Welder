@@ -38,6 +38,11 @@ namespace Welder {
                 return destFolder + "/" + serverSlug + "-" + serverVersion + "-server.zip";
             }
         }
+        public string exportFileLatest {
+            get {
+                return destFolder + "/" + serverSlug + "-latest-server.zip";
+            }
+        }
 
         public string serverJarOnline {
             get {
@@ -137,6 +142,7 @@ namespace Welder {
             File.Delete(exportFile);
             MiscFunctions.RemoveEmptyFolders(serverFolder, false);
             ZipFile.CreateFromDirectory(serverFolder, exportFile, CompressionLevel.Optimal, false);
+            File.Copy(exportFile, exportFileLatest);
         }
     }
 }
