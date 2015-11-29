@@ -64,5 +64,35 @@ namespace Welder {
             }
             return returnValue;
         }
+
+        public static void SaveFilePlain (List<string> data, string file) {
+            bool succeed = false;
+            while (!succeed) {
+                try {
+                    File.WriteAllLines(file, data);
+                    succeed = true;
+                }
+                catch { }
+            }
+        }
+
+        public static List<string> LoadFilePlain (string file) {
+            List<string> returnValue = new List<string>();
+            try {
+                using (FileStream fs = File.Open(file, FileMode.Open)) {
+                    using (StreamReader sr = new StreamReader(fs)) {
+                        string currentline = sr.ReadLine();
+                        while (currentline != null) {
+                            returnValue.Add(currentline);
+                            currentline = sr.ReadLine();
+                        }
+                    }
+                }
+            }
+            catch {
+                returnValue = null;
+            }
+            return returnValue;
+        }
     }
 }

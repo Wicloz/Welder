@@ -8,11 +8,11 @@ using System.Windows.Forms;
 using System.Net;
 
 namespace Welder {
-    class RepoData {
+    class MM_RepoData {
         private string repoDir = "";
         private string repoMcVersion = "";
         private string solderUrl = "";
-        public List<ModData> modlist = new List<ModData>();
+        public List<MM_ModData> modlist = new List<MM_ModData>();
         public bool mustReloadListView = false;
         private string modlistFile {
             get {
@@ -37,22 +37,22 @@ namespace Welder {
                 foreach (string folder in modSlugFolders) {
                     string slug = folder.Replace(repoDir + "/mods\\", "");
                     if (GetModWithSlug(slug) == null) {
-                        ModData mod = new ModData();
+                        MM_ModData mod = new MM_ModData();
                         mod.modslug = slug;
                         mod.mcVersion = repoMcVersion;
                         modlist.Add(mod);
                     }
                 }
             }
-            foreach (ModData mod in modlist) {
+            foreach (MM_ModData mod in modlist) {
                 mod.repoFolder = repoDir;
                 mod.Initialise();
             }
         }
 
         //Returns the first mod with modslug modslug, otherwise returns null
-        private ModData GetModWithSlug (string modslug) {
-            foreach (ModData mod in modlist) {
+        private MM_ModData GetModWithSlug (string modslug) {
+            foreach (MM_ModData mod in modlist) {
                 if (mod.modslug == modslug)
                     return mod;
             }
@@ -61,12 +61,12 @@ namespace Welder {
 
         //Loads the cached modlist
         private void LoadModList () {
-            modlist = new List<ModData>();
+            modlist = new List<MM_ModData>();
             if (Directory.Exists(repoDir))
                 if (File.Exists(modlistFile))
-                    modlist = SaveLoad.LoadFileBf<List<ModData>>(modlistFile);
+                    modlist = SaveLoad.LoadFileBf<List<MM_ModData>>(modlistFile);
             if (modlist == null) {
-                modlist = new List<ModData>();
+                modlist = new List<MM_ModData>();
                 MessageBox.Show("Error loading mod data file, restoring to empty list ...", "ERROR");
             }
             SaveModList();
@@ -106,7 +106,7 @@ namespace Welder {
                 }
                 foreach (string slug in modslugs) {
                     if (slug != "" && GetModWithSlug(slug) == null) {
-                        ModData newMod = new ModData();
+                        MM_ModData newMod = new MM_ModData();
                         newMod.modslug = slug;
                         newMod.mcVersion = repoMcVersion;
                         newMod.repoFolder = repoDir;

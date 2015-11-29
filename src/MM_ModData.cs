@@ -9,7 +9,7 @@ using System.IO.Compression;
 
 namespace Welder {
     [Serializable]
-    public class ModData {
+    public class MM_ModData {
         private MM_SiteConfig siteConfig = new MM_SiteConfig();
 
         public string modslug = "NONE";
@@ -77,9 +77,10 @@ namespace Welder {
                 _canUpdate = value;
                 if (_canUpdate)
                     Directory.CreateDirectory(Path.GetDirectoryName(downloadFile));
-                else if (Directory.Exists(downloadFolder))
+                else if (Directory.Exists(downloadFolder)) {
                     Directory.Delete(downloadFolder, true);
-
+                    MiscFunctions.RemoveEmptyFolders(downloadFolder + "/..", true);
+                }
             }
         }
         public bool updateList = false;
@@ -149,7 +150,7 @@ namespace Welder {
         public string website4 = "";
         public string website5 = "";
 
-        public ModData () {
+        public MM_ModData () {
             siteConfig = new MM_SiteConfig();
         }
         //Initialises the moddata

@@ -101,7 +101,7 @@
             this.listViewMods.Location = new System.Drawing.Point(12, 198);
             this.listViewMods.MultiSelect = false;
             this.listViewMods.Name = "listViewMods";
-            this.listViewMods.Size = new System.Drawing.Size(1224, 288);
+            this.listViewMods.Size = new System.Drawing.Size(1250, 287);
             this.listViewMods.TabIndex = 0;
             this.listViewMods.UseCompatibleStateImageBehavior = false;
             this.listViewMods.View = System.Windows.Forms.View.Details;
@@ -187,7 +187,7 @@
             this.groupBox1.Controls.Add(this.buttonOneGoogle);
             this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1059, 154);
+            this.groupBox1.Size = new System.Drawing.Size(1085, 154);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected Mod";
@@ -196,7 +196,7 @@
             // 
             this.checkBoxCanUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxCanUpdate.AutoSize = true;
-            this.checkBoxCanUpdate.Location = new System.Drawing.Point(952, 128);
+            this.checkBoxCanUpdate.Location = new System.Drawing.Point(978, 128);
             this.checkBoxCanUpdate.Name = "checkBoxCanUpdate";
             this.checkBoxCanUpdate.Size = new System.Drawing.Size(107, 17);
             this.checkBoxCanUpdate.TabIndex = 17;
@@ -207,7 +207,7 @@
             // buttonOneDuplicate
             // 
             this.buttonOneDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneDuplicate.Location = new System.Drawing.Point(759, 45);
+            this.buttonOneDuplicate.Location = new System.Drawing.Point(785, 45);
             this.buttonOneDuplicate.Name = "buttonOneDuplicate";
             this.buttonOneDuplicate.Size = new System.Drawing.Size(75, 20);
             this.buttonOneDuplicate.TabIndex = 16;
@@ -219,7 +219,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(840, 48);
+            this.label7.Location = new System.Drawing.Point(866, 48);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 13);
             this.label7.TabIndex = 15;
@@ -240,14 +240,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxModMcVersion.Location = new System.Drawing.Point(91, 45);
             this.textBoxModMcVersion.Name = "textBoxModMcVersion";
-            this.textBoxModMcVersion.Size = new System.Drawing.Size(662, 20);
+            this.textBoxModMcVersion.Size = new System.Drawing.Size(688, 20);
             this.textBoxModMcVersion.TabIndex = 13;
             this.textBoxModMcVersion.TextChanged += new System.EventHandler(this.textBoxModMcVersion_TextChanged);
             // 
             // textBoxModNewMcVersion
             // 
             this.textBoxModNewMcVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxModNewMcVersion.Location = new System.Drawing.Point(935, 45);
+            this.textBoxModNewMcVersion.Location = new System.Drawing.Point(961, 45);
             this.textBoxModNewMcVersion.Name = "textBoxModNewMcVersion";
             this.textBoxModNewMcVersion.Size = new System.Drawing.Size(118, 20);
             this.textBoxModNewMcVersion.TabIndex = 12;
@@ -255,7 +255,7 @@
             // buttonOneCheck
             // 
             this.buttonOneCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneCheck.Location = new System.Drawing.Point(410, 123);
+            this.buttonOneCheck.Location = new System.Drawing.Point(436, 123);
             this.buttonOneCheck.Name = "buttonOneCheck";
             this.buttonOneCheck.Size = new System.Drawing.Size(265, 25);
             this.buttonOneCheck.TabIndex = 11;
@@ -266,7 +266,7 @@
             // buttonOneFind
             // 
             this.buttonOneFind.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneFind.Location = new System.Drawing.Point(681, 123);
+            this.buttonOneFind.Location = new System.Drawing.Point(707, 123);
             this.buttonOneFind.Name = "buttonOneFind";
             this.buttonOneFind.Size = new System.Drawing.Size(265, 25);
             this.buttonOneFind.TabIndex = 10;
@@ -278,7 +278,7 @@
             // 
             this.labelSiteMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSiteMode.AutoSize = true;
-            this.labelSiteMode.Location = new System.Drawing.Point(975, 75);
+            this.labelSiteMode.Location = new System.Drawing.Point(1001, 75);
             this.labelSiteMode.Name = "labelSiteMode";
             this.labelSiteMode.Size = new System.Drawing.Size(68, 13);
             this.labelSiteMode.TabIndex = 9;
@@ -305,7 +305,7 @@
             // buttonOneOpensite
             // 
             this.buttonOneOpensite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneOpensite.Location = new System.Drawing.Point(894, 71);
+            this.buttonOneOpensite.Location = new System.Drawing.Point(920, 71);
             this.buttonOneOpensite.Name = "buttonOneOpensite";
             this.buttonOneOpensite.Size = new System.Drawing.Size(75, 20);
             this.buttonOneOpensite.TabIndex = 6;
@@ -319,7 +319,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOneUpdate.Location = new System.Drawing.Point(6, 123);
             this.buttonOneUpdate.Name = "buttonOneUpdate";
-            this.buttonOneUpdate.Size = new System.Drawing.Size(398, 25);
+            this.buttonOneUpdate.Size = new System.Drawing.Size(424, 25);
             this.buttonOneUpdate.TabIndex = 5;
             this.buttonOneUpdate.Text = "Update Mod";
             this.buttonOneUpdate.UseVisualStyleBackColor = true;
@@ -332,7 +332,7 @@
             this.textBoxModDsite.Location = new System.Drawing.Point(91, 97);
             this.textBoxModDsite.Name = "textBoxModDsite";
             this.textBoxModDsite.ReadOnly = true;
-            this.textBoxModDsite.Size = new System.Drawing.Size(962, 20);
+            this.textBoxModDsite.Size = new System.Drawing.Size(988, 20);
             this.textBoxModDsite.TabIndex = 4;
             // 
             // textBoxModVsite
@@ -341,7 +341,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxModVsite.Location = new System.Drawing.Point(91, 71);
             this.textBoxModVsite.Name = "textBoxModVsite";
-            this.textBoxModVsite.Size = new System.Drawing.Size(797, 20);
+            this.textBoxModVsite.Size = new System.Drawing.Size(823, 20);
             this.textBoxModVsite.TabIndex = 3;
             this.textBoxModVsite.TextChanged += new System.EventHandler(this.textBoxModVsite_TextChanged);
             // 
@@ -351,7 +351,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxModSlug.Location = new System.Drawing.Point(91, 19);
             this.textBoxModSlug.Name = "textBoxModSlug";
-            this.textBoxModSlug.Size = new System.Drawing.Size(881, 20);
+            this.textBoxModSlug.Size = new System.Drawing.Size(907, 20);
             this.textBoxModSlug.TabIndex = 2;
             this.textBoxModSlug.TextChanged += new System.EventHandler(this.textBoxModSlug_TextChanged);
             // 
@@ -367,7 +367,7 @@
             // buttonOneGoogle
             // 
             this.buttonOneGoogle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOneGoogle.Location = new System.Drawing.Point(978, 19);
+            this.buttonOneGoogle.Location = new System.Drawing.Point(1004, 19);
             this.buttonOneGoogle.Name = "buttonOneGoogle";
             this.buttonOneGoogle.Size = new System.Drawing.Size(75, 20);
             this.buttonOneGoogle.TabIndex = 0;
@@ -381,7 +381,7 @@
             this.groupBox2.Controls.Add(this.buttonAllCheck);
             this.groupBox2.Controls.Add(this.buttonAllUpdate);
             this.groupBox2.Controls.Add(this.buttonAllFind);
-            this.groupBox2.Location = new System.Drawing.Point(1077, 38);
+            this.groupBox2.Location = new System.Drawing.Point(1103, 38);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(159, 154);
             this.groupBox2.TabIndex = 2;
@@ -426,7 +426,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRepo.Location = new System.Drawing.Point(98, 12);
             this.textBoxRepo.Name = "textBoxRepo";
-            this.textBoxRepo.Size = new System.Drawing.Size(815, 20);
+            this.textBoxRepo.Size = new System.Drawing.Size(841, 20);
             this.textBoxRepo.TabIndex = 3;
             // 
             // label4
@@ -441,7 +441,7 @@
             // buttonUpdateRepo
             // 
             this.buttonUpdateRepo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonUpdateRepo.Location = new System.Drawing.Point(1160, 12);
+            this.buttonUpdateRepo.Location = new System.Drawing.Point(1186, 12);
             this.buttonUpdateRepo.Name = "buttonUpdateRepo";
             this.buttonUpdateRepo.Size = new System.Drawing.Size(76, 20);
             this.buttonUpdateRepo.TabIndex = 5;
@@ -452,7 +452,7 @@
             // textBoxRepoVersion
             // 
             this.textBoxRepoVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRepoVersion.Location = new System.Drawing.Point(1054, 12);
+            this.textBoxRepoVersion.Location = new System.Drawing.Point(1080, 12);
             this.textBoxRepoVersion.Name = "textBoxRepoVersion";
             this.textBoxRepoVersion.Size = new System.Drawing.Size(100, 20);
             this.textBoxRepoVersion.TabIndex = 6;
@@ -461,7 +461,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(919, 15);
+            this.label5.Location = new System.Drawing.Point(945, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 13);
             this.label5.TabIndex = 7;
@@ -470,7 +470,7 @@
             // buttonDeleteMod
             // 
             this.buttonDeleteMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDeleteMod.Location = new System.Drawing.Point(783, 492);
+            this.buttonDeleteMod.Location = new System.Drawing.Point(809, 491);
             this.buttonDeleteMod.Name = "buttonDeleteMod";
             this.buttonDeleteMod.Size = new System.Drawing.Size(453, 23);
             this.buttonDeleteMod.TabIndex = 8;
@@ -482,9 +482,9 @@
             // 
             this.buttonAddMod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddMod.Location = new System.Drawing.Point(12, 492);
+            this.buttonAddMod.Location = new System.Drawing.Point(12, 491);
             this.buttonAddMod.Name = "buttonAddMod";
-            this.buttonAddMod.Size = new System.Drawing.Size(765, 23);
+            this.buttonAddMod.Size = new System.Drawing.Size(791, 23);
             this.buttonAddMod.TabIndex = 9;
             this.buttonAddMod.Text = "Add New Mod";
             this.buttonAddMod.UseVisualStyleBackColor = true;
@@ -494,9 +494,9 @@
             // 
             this.textBoxSolderUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSolderUrl.Location = new System.Drawing.Point(81, 521);
+            this.textBoxSolderUrl.Location = new System.Drawing.Point(81, 520);
             this.textBoxSolderUrl.Name = "textBoxSolderUrl";
-            this.textBoxSolderUrl.Size = new System.Drawing.Size(726, 20);
+            this.textBoxSolderUrl.Size = new System.Drawing.Size(752, 20);
             this.textBoxSolderUrl.TabIndex = 10;
             this.textBoxSolderUrl.TextChanged += new System.EventHandler(this.textBoxSolderUrl_TextChanged);
             // 
@@ -504,7 +504,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 524);
+            this.label8.Location = new System.Drawing.Point(12, 523);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 11;
@@ -514,9 +514,9 @@
             // 
             this.buttonSolderSync.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSolderSync.Location = new System.Drawing.Point(12, 547);
+            this.buttonSolderSync.Location = new System.Drawing.Point(12, 546);
             this.buttonSolderSync.Name = "buttonSolderSync";
-            this.buttonSolderSync.Size = new System.Drawing.Size(1224, 23);
+            this.buttonSolderSync.Size = new System.Drawing.Size(1250, 23);
             this.buttonSolderSync.TabIndex = 12;
             this.buttonSolderSync.Text = "Update Modlist From Solder";
             this.buttonSolderSync.UseVisualStyleBackColor = true;
@@ -525,7 +525,7 @@
             // textBoxSolderPass
             // 
             this.textBoxSolderPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSolderPass.Location = new System.Drawing.Point(1076, 521);
+            this.textBoxSolderPass.Location = new System.Drawing.Point(1102, 520);
             this.textBoxSolderPass.Name = "textBoxSolderPass";
             this.textBoxSolderPass.Size = new System.Drawing.Size(160, 20);
             this.textBoxSolderPass.TabIndex = 13;
@@ -534,7 +534,7 @@
             // textBoxSolderMail
             // 
             this.textBoxSolderMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSolderMail.Location = new System.Drawing.Point(848, 521);
+            this.textBoxSolderMail.Location = new System.Drawing.Point(874, 520);
             this.textBoxSolderMail.Name = "textBoxSolderMail";
             this.textBoxSolderMail.Size = new System.Drawing.Size(160, 20);
             this.textBoxSolderMail.TabIndex = 14;
@@ -544,7 +544,7 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1014, 524);
+            this.label9.Location = new System.Drawing.Point(1040, 523);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 13);
             this.label9.TabIndex = 15;
@@ -554,7 +554,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(813, 524);
+            this.label10.Location = new System.Drawing.Point(839, 523);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(29, 13);
             this.label10.TabIndex = 16;
@@ -564,7 +564,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 582);
+            this.ClientSize = new System.Drawing.Size(1274, 581);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBoxSolderMail);

@@ -12,11 +12,11 @@ using System.Diagnostics;
 
 namespace Welder {
     public partial class ModManager : Form {
-        private RepoData repo = new RepoData();
+        private MM_RepoData repo = new MM_RepoData();
         private MM_Settings settings = new MM_Settings();
         public static string cd = Directory.GetCurrentDirectory();
         public static List<MM_SiteConfig> sites = new List<MM_SiteConfig>();
-        private ModData selectedMod = new ModData();
+        private MM_ModData selectedMod = new MM_ModData();
         private int selectedIndex = 0;
         private bool updatingData = false;
 
@@ -53,7 +53,7 @@ namespace Welder {
             }
 
             ActionStates state = ActionStates.idle;
-            foreach (ModData mod in repo.modlist) {
+            foreach (MM_ModData mod in repo.modlist) {
                 if (mod.enabled) {
                     if ((int)state < 1 && mod.queuedUpdate)
                         state = ActionStates.update;
@@ -66,7 +66,7 @@ namespace Welder {
 
             switch (state) {
                 case ActionStates.find:
-                    foreach (ModData mod in repo.modlist) {
+                    foreach (MM_ModData mod in repo.modlist) {
                         if (mod.enabled) {
                             if (mod.queuedFind && !mod.busyFind)
                                 mod.FindWebsiteUrl();
@@ -75,7 +75,7 @@ namespace Welder {
                     break;
 
                 case ActionStates.check:
-                    foreach (ModData mod in repo.modlist) {
+                    foreach (MM_ModData mod in repo.modlist) {
                         if (mod.enabled) {
                             if (mod.enabled) {
                                 if (mod.busyCheck)
@@ -90,7 +90,7 @@ namespace Welder {
                     break;
 
                 case ActionStates.update:
-                    foreach (ModData mod in repo.modlist) {
+                    foreach (MM_ModData mod in repo.modlist) {
                         if (mod.enabled) {
                             if (mod.enabled) {
                                 if (mod.busyUpdate)
@@ -106,7 +106,7 @@ namespace Welder {
             }
 
             for (int i = 0; i < repo.modlist.Count; i++) {
-                ModData mod = repo.modlist[i];
+                MM_ModData mod = repo.modlist[i];
                 if (mod.updateList || mod.actionState != listViewMods.Items[i].SubItems[5].Text) {
                     mod.updateList = false;
                     ReloadModListAt(i);
@@ -166,9 +166,9 @@ namespace Welder {
             updatingData = true;
             listViewMods.Items.Clear();
             listViewMods.SelectedIndices.Clear();
-            selectedMod = new ModData();
+            selectedMod = new MM_ModData();
 
-            foreach (ModData mod in repo.modlist) {
+            foreach (MM_ModData mod in repo.modlist) {
                 ListViewItem lvi = new ListViewItem(mod.mcVersion);
 
                 lvi.SubItems.Add(mod.modslug);
@@ -187,6 +187,7 @@ namespace Welder {
             }
 
             if (selectedIndex < repo.modlist.Count && selectedIndex > -1) {
+                listViewMods.SelectedIndices.Add(selectedIndex);
                 selectedMod = repo.modlist[selectedIndex];
             }
 
@@ -196,7 +197,7 @@ namespace Welder {
 
         //Reloads the line of the modlistview at a certain index
         private void ReloadModListAt (int index) {
-            ModData mod = repo.modlist[index];
+            MM_ModData mod = repo.modlist[index];
             listViewMods.Items[index].SubItems[0].Text = mod.mcVersion;
             listViewMods.Items[index].SubItems[1].Text = mod.modslug;
             listViewMods.Items[index].SubItems[2].Text = mod.urlState;
@@ -295,7 +296,7 @@ namespace Welder {
 
         //Creates a duplicate of the currently selected mod with a nem mc version
         private void buttonOneDuplicate_Click (object sender, EventArgs e) {
-            ModData newMod = new ModData();
+            MM_ModData newMod = new MM_ModData();
             newMod.modslug = selectedMod.modslug;
             newMod.enabled = selectedMod.enabled;
             newMod.websiteCheck = selectedMod.websiteCheck;
@@ -315,7 +316,7 @@ namespace Welder {
 
         //Add a new empty mod to the list
         private void buttonAddMod_Click (object sender, EventArgs e) {
-            ModData newMod = new ModData();
+            MM_ModData newMod = new MM_ModData();
             newMod.enabled = false;
             newMod.mcVersion = settings.mainMcVersion;
             newMod.repoFolder = settings.repo;
@@ -340,7 +341,7 @@ namespace Welder {
 
         //Set the queued state of update on all mods
         private void buttonAllUpdate_Click (object sender, EventArgs e) {
-            foreach (ModData mod in repo.modlist) {
+            foreach (MM_ModData mod in repo.modlist) {
                 if (mod.enabled && mod.canUpdate)
                     mod.queuedUpdate = true;
             }
@@ -348,7 +349,7 @@ namespace Welder {
 
         //Set the queued state of check on all mods
         private void buttonAllCheck_Click (object sender, EventArgs e) {
-            foreach (ModData mod in repo.modlist) {
+            foreach (MM_ModData mod in repo.modlist) {
                 if (mod.enabled)
                     mod.queuedCheck = true;
             }
@@ -356,7 +357,7 @@ namespace Welder {
 
         //Set the queued state of find on all mods
         private void buttonAllFind_Click (object sender, EventArgs e) {
-            foreach (ModData mod in repo.modlist) {
+            foreach (MM_ModData mod in repo.modlist) {
                 if (mod.enabled && mod.urlState == "")
                     mod.queuedFind = true;
             }

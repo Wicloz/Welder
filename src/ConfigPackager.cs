@@ -13,5 +13,16 @@ namespace Welder {
         public ConfigPackager () {
             InitializeComponent();
         }
+
+        private void ConfigPackager_Load (object sender, EventArgs e) {
+
+        }
+
+        private void ConfigPackager_FormClosing (object sender, FormClosingEventArgs e) {
+            if (e.CloseReason == CloseReason.UserClosing) {
+                e.Cancel = true;
+                Hide();
+            }
+        }
     }
 }

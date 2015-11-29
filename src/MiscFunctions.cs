@@ -9,6 +9,22 @@ namespace Welder {
     enum ActionStates {idle, update, check, find};
 
     class MiscFunctions {
+        //Deletes only empty folders in the specified root
+        public static void RemoveEmptyFolders (string root, bool includeRoot) {
+            foreach (string folder in Directory.GetDirectories(root)) {
+                RemoveEmptyFolders(folder, true);
+            }
+            if (Directory.GetFiles(root).Length == 0 && Directory.GetDirectories(root).Length == 0) {
+                if (includeRoot)
+                    Directory.Delete(root);
+            }
+        }
+
+        //Returns the string formatted as a slug
+        public static string ConvertToSlug (string name) {
+            return name.ToLower().Replace(" ", "-");
+        }
+
         //Allows usage of the GetFiles function with multiple searchPattern
         public static string[] GetFiles (string path, string searchPattern, SearchOption searchOption) {
             string[] searchPatterns = searchPattern.Split('|');

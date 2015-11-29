@@ -13,6 +13,7 @@ namespace Welder
     public partial class Selector : Form {
         private ModManager modManager = new ModManager();
         private ConfigPackager configPackager = new ConfigPackager();
+        private ServerBuilder serverBuilder = new ServerBuilder();
 
         public Selector() {
             InitializeComponent();
@@ -26,8 +27,8 @@ namespace Welder
             configPackager.Show();
         }
 
-        private void Selector_Shown (object sender, EventArgs e) {
-            modManager.Show();
+        private void buttonServerBuilder_Click (object sender, EventArgs e) {
+            serverBuilder.Show();
         }
     }
 }
