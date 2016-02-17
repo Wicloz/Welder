@@ -437,7 +437,7 @@ namespace Welder {
                         if (releaseDateLatest == "NA" && currentline.Contains(siteConfig.dateLineId))
                             releaseDateLatest = MiscFunctions.ExtractSection(currentline, siteConfig.dateLinePre, siteConfig.dateLinePost);
                         if (fileNameOnline == "NA" && currentline.Contains(siteConfig.fileNameLineId))
-                            fileNameOnline = MiscFunctions.ExtractSection(currentline, siteConfig.fileNameLinePre, siteConfig.fileNameLinePost);
+                            fileNameOnline = MiscFunctions.ExtractSection(currentline, siteConfig.fileNameLinePre, siteConfig.fileNameLinePost).Replace("\t", "").Trim();
                         if (fileNumberOnline == "NA" && currentline.Contains(siteConfig.fileNumLineId))
                             fileNumberOnline = MiscFunctions.ExtractSection(currentline, siteConfig.fileNumLinePre, siteConfig.fileNumLinePost);
                         if (versionOnline == "NA" && currentline.Contains(siteConfig.versionLineId))
