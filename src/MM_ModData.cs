@@ -168,8 +168,10 @@ namespace Welder {
 
         //Updates the local version
         public void SetLocalVersion () {
-            if (Directory.Exists(repoZipFolder) && Directory.GetFiles(repoZipFolder).Length > 0)
-                versionLocal = MiscFunctions.VersionFromRepoMod(Path.GetFileName(Directory.GetFiles(repoZipFolder)[0]), modslug);
+            if (Directory.Exists(repoZipFolder) && Directory.GetFiles(repoZipFolder).Length > 0) {
+                string[] files = Directory.GetFiles(repoZipFolder);
+                versionLocal = MiscFunctions.VersionFromRepoMod(Path.GetFileName(files[files.Length - 1]), modslug);
+            }
             else
                 versionLocal = "NA";
         }
