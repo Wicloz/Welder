@@ -191,7 +191,7 @@ namespace Welder {
             switch (findMode) {
                 case 1:
                     websiteCheck = "NONE"; //debug
-                    client1.DownloadStringAsync(new Uri("http://minecraft.curseforge.com/search?search=" + modslug.Replace("-", "")));
+                    client1.DownloadStringAsync(new Uri("http://minecraft.curseforge.com/search?search=" + modslug.Replace("-", "+")));
                     break;
                 case 2:
                     website1 = websiteCheck;
