@@ -222,6 +222,7 @@ namespace Welder {
                 textBoxModNewMcVersion.Text = "";
                 textBoxModVsite.Text = "";
                 textBoxModDsite.Text = "";
+                labelSiteMode.Text = "Unsupported";
                 checkBoxCanUpdate.Checked = false;
             }
             else {
@@ -231,6 +232,10 @@ namespace Welder {
                 textBoxModVsite.Text = selectedMod.websiteCheck;
                 textBoxModDsite.Text = selectedMod.websiteDownload;
                 checkBoxCanUpdate.Checked = selectedMod.canUpdate;
+                if (selectedMod.urlState == "")
+                    labelSiteMode.Text = "No Site";
+                else
+                    labelSiteMode.Text = selectedMod.urlState;
             }
             updatingData = false;
         }
