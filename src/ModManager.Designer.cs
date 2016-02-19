@@ -527,6 +527,7 @@
             this.textBoxSolderPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxSolderPass.Location = new System.Drawing.Point(1102, 520);
             this.textBoxSolderPass.Name = "textBoxSolderPass";
+            this.textBoxSolderPass.PasswordChar = '•';
             this.textBoxSolderPass.Size = new System.Drawing.Size(160, 20);
             this.textBoxSolderPass.TabIndex = 13;
             this.textBoxSolderPass.TextChanged += new System.EventHandler(this.textBoxSolderPass_TextChanged);

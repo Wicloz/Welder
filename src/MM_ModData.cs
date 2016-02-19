@@ -35,6 +35,7 @@ namespace Welder {
                     .Replace("%VERSION%", versionOnline);
             }
         }
+        public int solderID = -1;
 
         public string repoFolder = "NONE";
         public string downloadFolder {

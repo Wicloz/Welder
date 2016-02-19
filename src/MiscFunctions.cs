@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net;
 
 namespace Welder {
     enum ActionStates {idle, update, check, find};
@@ -25,6 +26,24 @@ namespace Welder {
         //Returns the string formatted as a slug
         public static string ConvertToSlug (string name) {
             return name.ToLower().Replace(" ", "-");
+        }
+
+        //Returns a cookie aware webclient authenticated with the speciefied email and password
+        public static CookieAwareWebClient GetAuthenticatedWebClient (string solderUrl, string email, string password) {
+            string loginAddress = solderUrl + "login";
+            System.Collections.Specialized.NameValueCollection loginData = new System.Collections.Specialized.NameValueCollection {{"email", email}, {"password", password}};
+            CookieAwareWebClient client = new CookieAwareWebClient();
+            client.UploadValues(loginAddress, loginData);
+            return client;
+        }
+
+        //Performs a specefic POST request to a specific solder site with authentication
+        //Request formatted as: "param1=value1&param2=value2&param3=value3"
+        public static void DoSolderPOST (string solderUrl, string link, string email, string password, string request) {
+            using (CookieAwareWebClient client = GetAuthenticatedWebClient(solderUrl, email, password)) {
+                client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                client.UploadString(solderUrl + link, request);
+            }
         }
 
         //Allows usage of the GetFiles function with multiple searchPattern

@@ -81,12 +81,7 @@ namespace Welder {
         //Downlads the solder modlist and adds all missing mods
         public void UpdateListFromSolder (string link, string email, string password) {
             solderUrl = link;
-            string loginAddress = solderUrl + "login";
-            System.Collections.Specialized.NameValueCollection loginData = new System.Collections.Specialized.NameValueCollection {{"email", email}, {"password", password}};
-
-            CookieAwareWebClient client = new CookieAwareWebClient();
-            client.UploadValues(loginAddress, loginData);
-
+            CookieAwareWebClient client = MiscFunctions.GetAuthenticatedWebClient(solderUrl, email, password);
             client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(solderDownloadCompleted);
             client.DownloadStringAsync(new Uri(solderUrl + "mod/list"));
         }
