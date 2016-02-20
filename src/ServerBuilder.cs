@@ -98,10 +98,12 @@ namespace Welder {
 
         //Remove selected server from list
         private void buttonRemoveServer_Click (object sender, EventArgs e) {
-            servers.RemoveAt(selectedIndex);
-            if (selectedIndex >= servers.Count)
-                selectedIndex -= 1;
-            ReloadServerList();
+            if (selectedIndex >= 0) {
+                servers.RemoveAt(selectedIndex);
+                if (selectedIndex >= servers.Count)
+                    selectedIndex -= 1;
+                ReloadServerList();
+            }
         }
 
         //Updates selected server name
@@ -150,7 +152,7 @@ namespace Welder {
 
         //Build server for slected server
         private void buttonBuildServer_Click (object sender, EventArgs e) {
-            if (selectedServer.serverName != "NONE")
+            if (selectedServer.serverName != "NONE" && Directory.Exists(selectedServer.sourceFolder) && Directory.Exists(selectedServer.destFolder))
                 selectedServer.BuildServer();
         }
 
