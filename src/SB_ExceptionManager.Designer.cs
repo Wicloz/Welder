@@ -33,7 +33,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SB_ExceptionManager";
-            this.Text = "SB_ExceptionManager";
+            this.Text = "Ignored Mods Manager";
             this.ResumeLayout(false);
 
         }

@@ -173,5 +173,10 @@ namespace Welder {
             if (selectedServer.serverName != "NONE")
                 selectedServer.ExportServer();
         }
+
+        //Opens the exception manager form
+        private void buttonExceptionManager_Click (object sender, EventArgs e) {
+            exceptionManager.ShowDialog();
+        }
     }
 }

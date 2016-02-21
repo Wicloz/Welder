@@ -18,7 +18,7 @@ namespace Welder {
             LoadExceptions();
         }
 
-        //Loads Exceptions
+        //Loads exception list
         private void LoadExceptions () {
             if (File.Exists(ServerBuilder.cd + "/server_exceptions.cfg"))
                 exceptions = SaveLoad.LoadFilePlain(ServerBuilder.cd + "/server_exceptions.cfg");
@@ -27,7 +27,7 @@ namespace Welder {
             SaveExceptions();
         }
 
-        //Saves Exceptions
+        //Saves exception list
         private void SaveExceptions () {
             SaveLoad.SaveFilePlain(exceptions, ServerBuilder.cd + "/server_exceptions.cfg");
         }
@@ -35,7 +35,7 @@ namespace Welder {
         //Returns true when a mod should not be on a server
         public static bool IsException (string modname) {
             foreach (string exception in exceptions) {
-                if (modname.ToLower().Contains(exception))
+                if (MiscFunctions.CleanString(modname).Contains(exception))
                     return true;
             }
             return false;

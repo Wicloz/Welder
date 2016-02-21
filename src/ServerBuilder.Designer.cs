@@ -28,6 +28,8 @@
             this.serverName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxArguments = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxDestFolder = new System.Windows.Forms.TextBox();
             this.checkBoxAddBackup = new System.Windows.Forms.CheckBox();
@@ -45,8 +47,7 @@
             this.buttonCleanCopy = new System.Windows.Forms.Button();
             this.buttonAddServer = new System.Windows.Forms.Button();
             this.buttonRemoveServer = new System.Windows.Forms.Button();
-            this.textBoxArguments = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.buttonExceptionManager = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,6 +109,25 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Server Information";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 152);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(94, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Server Arguments:";
+            // 
+            // textBoxArguments
+            // 
+            this.textBoxArguments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxArguments.Location = new System.Drawing.Point(153, 149);
+            this.textBoxArguments.Name = "textBoxArguments";
+            this.textBoxArguments.Size = new System.Drawing.Size(729, 20);
+            this.textBoxArguments.TabIndex = 11;
+            this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
             // 
             // label5
             // 
@@ -281,30 +301,23 @@
             this.buttonRemoveServer.UseVisualStyleBackColor = true;
             this.buttonRemoveServer.Click += new System.EventHandler(this.buttonRemoveServer_Click);
             // 
-            // textBoxArguments
+            // buttonExceptionManager
             // 
-            this.textBoxArguments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxArguments.Location = new System.Drawing.Point(153, 149);
-            this.textBoxArguments.Name = "textBoxArguments";
-            this.textBoxArguments.Size = new System.Drawing.Size(729, 20);
-            this.textBoxArguments.TabIndex = 11;
-            this.textBoxArguments.TextChanged += new System.EventHandler(this.textBoxArguments_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 152);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Server Arguments:";
+            this.buttonExceptionManager.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonExceptionManager.Location = new System.Drawing.Point(1083, 507);
+            this.buttonExceptionManager.Name = "buttonExceptionManager";
+            this.buttonExceptionManager.Size = new System.Drawing.Size(149, 62);
+            this.buttonExceptionManager.TabIndex = 10;
+            this.buttonExceptionManager.Text = "Ignored Mods Manager";
+            this.buttonExceptionManager.UseVisualStyleBackColor = true;
+            this.buttonExceptionManager.Click += new System.EventHandler(this.buttonExceptionManager_Click);
             // 
             // ServerBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1244, 581);
+            this.Controls.Add(this.buttonExceptionManager);
             this.Controls.Add(this.buttonRemoveServer);
             this.Controls.Add(this.buttonAddServer);
             this.Controls.Add(this.buttonCleanCopy);
@@ -350,5 +363,6 @@
         private System.Windows.Forms.Button buttonRemoveServer;
         private System.Windows.Forms.TextBox textBoxArguments;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonExceptionManager;
     }
 }
