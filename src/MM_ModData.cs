@@ -412,6 +412,7 @@ namespace Welder {
             if (e != null && e.Error == null && !String.IsNullOrEmpty(e.Result)) {
                 progress = 100;
                 using (StringReader sr = new StringReader(e.Result)) {
+                    string oldVersion = versionOnline;
                     versionOnline = "NA";
                     fileNumberOnline = "NA";
                     fileNameOnline = "NA";
@@ -422,6 +423,7 @@ namespace Welder {
                     while (true) {
                         if (currentline == null) {
                             versionOnline = "Not Found";
+                            canUpdate = false;
                             StopCheckForUpdate();
                             return;
                         }
@@ -452,10 +454,8 @@ namespace Welder {
                     if (!fileNameOnline.EndsWith(".zip") && !fileNameOnline.EndsWith(".jar"))
                         fileNameOnline += ".jar";
 
-                    if (versionOnline != "NA" && versionLocal != versionOnline)
+                    if (versionOnline != "NA" && versionOnline != oldVersion)
                         canUpdate = true;
-                    else
-                        canUpdate = false;
                 }
 
                 StopCheckForUpdate();
@@ -526,11 +526,18 @@ namespace Welder {
 
                 //Create line in notification file
                 File.AppendAllText(notificationFile, "Mod Updated: " + modslug + " - " + versionOnline + "\n");
+
+                //Update the version at the solder repo, if possible
+                if (ModManager.solderUrl != "") {
+                    //System.Threading.Thread.Sleep(3000);
+                    //MiscFunctions.SendSolderModVersion(ModManager.solderUrl, ModManager.solderEmail, ModManager.solderPassword, solderID.ToString(), versionLocal);
+                }
             }
 
             SetLocalVersion();
             if (Directory.Exists(downloadFolder))
                 Directory.Delete(downloadFolder, true);
+
             canUpdate = false;
             StopUpdateMod();
         }
