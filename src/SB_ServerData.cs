@@ -91,10 +91,10 @@ namespace Welder {
             File.WriteAllText(serverFolder + "/eula.txt", "#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).\neula = true\n");
             File.AppendAllText(serverFolder + "/RUN.bat", "@ECHO OFF\n\n");
             if (addBackup)
-                File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Backing up world ...\nrmdir backups\\backup_before / Q / S\nrobocopy world backups\\backup_before / e\n\n");
+                File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Backing up world ...\nrmdir backups\\backup_before /Q /S\nrobocopy world backups\\backup_before /e\n\n");
             File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Starting server ...\njava " + arguments + " -jar modpack.jar nogui\n\n");
             if (addBackup)
-                File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Backing up world ...\nrmdir backups\\backup_after / Q / S\nrobocopy world backups\\backup_after / e\n\n");
+                File.AppendAllText(serverFolder + "/RUN.bat", "ECHO Backing up world ...\nrmdir backups\\backup_after /Q /S\nrobocopy world backups\\backup_after /e\n\n");
             File.AppendAllText(serverFolder + "/RUN.bat", "pause\nexit");
             if (addBackup) {
                 Directory.CreateDirectory(serverFolder + "/backups");
