@@ -90,22 +90,33 @@ namespace Welder {
         private void solderDownloadCompleted (object sender, DownloadStringCompletedEventArgs e) {
             if (e != null && e.Error == null && !String.IsNullOrEmpty(e.Result)) {
                 List<string> modslugs = new List<string>();
+                List<int> modids = new List<int>();
                 using (StringReader sr = new StringReader(e.Result)) {
                     string currentline = sr.ReadLine();
                     while (currentline != null) {
                         currentline = currentline.Trim();
-                        if (currentline.Contains("<a href=\"" + solderUrl + "mod/view/"))
+                        if (currentline.Contains("<a href=\"" + solderUrl + "mod/view/")) {
                             modslugs.Add(MiscFunctions.ExtractSection(currentline, "</a> (", ")"));
+                            modids.Add(Convert.ToInt32(MiscFunctions.ExtractSection(currentline, "/view/", "\"")));
+                        }
                         currentline = sr.ReadLine();
                     }
                 }
-                foreach (string slug in modslugs) {
-                    if (slug != "" && GetModWithSlug(slug) == null) {
-                        MM_ModData newMod = new MM_ModData();
-                        newMod.modslug = slug;
-                        newMod.mcVersion = repoMcVersion;
-                        newMod.repoFolder = repoDir;
-                        modlist.Add(newMod);
+                for (int i = 0; i < modslugs.Count; i++) {
+                    string slug = modslugs[i];
+                    int id = modids[i];
+                    if (slug != "") {
+                        MM_ModData mod = GetModWithSlug(slug);
+                        if (mod == null) {
+                            MM_ModData newMod = new MM_ModData();
+                            newMod.modslug = slug;
+                            newMod.mcVersion = repoMcVersion;
+                            newMod.repoFolder = repoDir;
+                            newMod.solderID = id;
+                            modlist.Add(newMod);
+                        }
+                        else
+                            mod.solderID = id;
                     }
                 }
             }

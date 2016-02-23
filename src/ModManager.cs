@@ -12,6 +12,7 @@ using System.Diagnostics;
 
 namespace Welder {
     public partial class ModManager : Form {
+        private static ModManager acces;
         private MM_RepoData repo = new MM_RepoData();
         private MM_Settings settings = new MM_Settings();
         public static string cd = Directory.GetCurrentDirectory();
@@ -20,8 +21,25 @@ namespace Welder {
         private int selectedIndex = 0;
         private bool updatingData = false;
 
+        public static string solderUrl {
+            get {
+                return acces.textBoxSolderUrl.Text;
+            }
+        }
+        public static string solderEmail {
+            get {
+                return acces.textBoxSolderMail.Text;
+            }
+        }
+        public static string solderPassword {
+            get {
+                return acces.textBoxSolderPass.Text;
+            }
+        }
+
         public ModManager () {
             InitializeComponent();
+            acces = this;
             //Initiate timer
             Timer timer = new Timer();
             timer.Tick += new EventHandler(timer_Tick);

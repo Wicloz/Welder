@@ -37,12 +37,14 @@ namespace Welder {
             return client;
         }
 
-        //Performs a specefic POST request to a specific solder site with authentication
-        //Request formatted as: "param1=value1&param2=value2&param3=value3"
-        public static void DoSolderPOST (string solderUrl, string link, string email, string password, string request) {
+        //Sends a modversion to the specified mod at the solder website
+        public static void SendSolderModVersion (string solderUrl, string email, string password, string id, string version) {
             using (CookieAwareWebClient client = GetAuthenticatedWebClient(solderUrl, email, password)) {
-                client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
-                client.UploadString(solderUrl + link, request);
+                string getURL = solderUrl + "post.php?id=" + id + "&version=" + version;
+                var cookies = client.CookieContainer.GetCookies(new Uri(solderUrl.Substring(0, solderUrl.Length - 1)));
+
+                System.Windows.Forms.WebBrowser browser = new System.Windows.Forms.WebBrowser();
+                browser.Navigate(getURL, "", null, "Cookie: " + cookies[0].Value + Environment.NewLine + "Cookie: " + cookies[1].Value + Environment.NewLine);
             }
         }
 
