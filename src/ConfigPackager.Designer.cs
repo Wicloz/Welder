@@ -39,6 +39,8 @@
             this.buttonAddPackage = new System.Windows.Forms.Button();
             this.buttonRemovePackage = new System.Windows.Forms.Button();
             this.listViewSelections = new System.Windows.Forms.ListView();
+            this.subfolder = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.wildcards = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonBuildPackage = new System.Windows.Forms.Button();
             this.buttonAddSelection = new System.Windows.Forms.Button();
             this.textBoxSelSubfolder = new System.Windows.Forms.TextBox();
@@ -48,8 +50,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.buttonSaveSelection = new System.Windows.Forms.Button();
             this.buttonLoadDefaultSelection = new System.Windows.Forms.Button();
-            this.subfolder = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.wildcards = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -224,6 +224,16 @@
             this.listViewSelections.View = System.Windows.Forms.View.Details;
             this.listViewSelections.SelectedIndexChanged += new System.EventHandler(this.listViewSelections_SelectedIndexChanged);
             // 
+            // subfolder
+            // 
+            this.subfolder.Text = "Subfolder";
+            this.subfolder.Width = 356;
+            // 
+            // wildcards
+            // 
+            this.wildcards.Text = "Wildcards";
+            this.wildcards.Width = 163;
+            // 
             // buttonBuildPackage
             // 
             this.buttonBuildPackage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -295,6 +305,7 @@
             // 
             // buttonSaveSelection
             // 
+            this.buttonSaveSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonSaveSelection.Location = new System.Drawing.Point(600, 517);
             this.buttonSaveSelection.Name = "buttonSaveSelection";
             this.buttonSaveSelection.Size = new System.Drawing.Size(112, 23);
@@ -305,6 +316,7 @@
             // 
             // buttonLoadDefaultSelection
             // 
+            this.buttonLoadDefaultSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonLoadDefaultSelection.Location = new System.Drawing.Point(600, 546);
             this.buttonLoadDefaultSelection.Name = "buttonLoadDefaultSelection";
             this.buttonLoadDefaultSelection.Size = new System.Drawing.Size(112, 23);
@@ -312,16 +324,6 @@
             this.buttonLoadDefaultSelection.Text = "Load Defaults";
             this.buttonLoadDefaultSelection.UseVisualStyleBackColor = true;
             this.buttonLoadDefaultSelection.Click += new System.EventHandler(this.buttonLoadDefaultSelection_Click);
-            // 
-            // subfolder
-            // 
-            this.subfolder.Text = "Subfolder";
-            this.subfolder.Width = 356;
-            // 
-            // wildcards
-            // 
-            this.wildcards.Text = "Wildcards";
-            this.wildcards.Width = 163;
             // 
             // ConfigPackager
             // 
