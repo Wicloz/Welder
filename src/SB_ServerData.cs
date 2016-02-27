@@ -140,6 +140,7 @@ namespace Welder {
         //Creates a server zipfile in the destination
         public void ExportServer () {
             File.Delete(exportFile);
+            File.Delete(exportFileLatest);
             MiscFunctions.RemoveEmptyFolders(serverFolder, false);
             ZipFile.CreateFromDirectory(serverFolder, exportFile, CompressionLevel.Optimal, false);
             File.Copy(exportFile, exportFileLatest);
