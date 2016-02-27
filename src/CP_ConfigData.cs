@@ -62,11 +62,27 @@ namespace Welder {
         }
 
         //Removes an item from one of the lists
-        public void RemoveItemAt (int index) {
+        public void RemoveSelectionAt (int index) {
             if (index < inclusions.Count)
                 inclusions.RemoveAt(index);
             else
                 exclusions.RemoveAt(index - inclusions.Count);
+        }
+
+        //Moves the requested selection to the other list
+        //Returns the new index
+        public int SwitchSelectionAt (int index) {
+            if (index < inclusions.Count) {
+                exclusions.Add(inclusions[index]);
+                inclusions.RemoveAt(index);
+                return inclusions.Count + exclusions.Count - 1;
+            }
+            else {
+                index -= inclusions.Count;
+                inclusions.Add(exclusions[index]);
+                exclusions.RemoveAt(index);
+                return inclusions.Count - 1;
+            }
         }
 
         //Builds this package
@@ -85,9 +101,19 @@ namespace Welder {
             foreach (CP_Selection inclusion in inclusions) {
                 try {
                     foreach (string file in MiscFunctions.GetFiles(sourceFolder + "/" + inclusion.folder, inclusion.wildcards, SearchOption.AllDirectories)) {
-                        string newFile = file.Replace(sourceFolder, packageBuildFolder);
-                        Directory.CreateDirectory(Path.GetDirectoryName(newFile));
-                        File.Copy(file, newFile);
+                        bool exclude = false;
+                        foreach (CP_Selection exclusion in exclusions) {
+                            if (MiscFunctions.PathContainsWildcards(file, exclusion.folder, exclusion.wildcards)) {
+                                exclude = true;
+                                break;
+                            }
+                        }
+
+                        if (!exclude) {
+                            string newFile = file.Replace(sourceFolder, packageBuildFolder);
+                            Directory.CreateDirectory(Path.GetDirectoryName(newFile));
+                            File.Copy(file, newFile);
+                        }
                     }
                 }
                 catch { }
@@ -113,6 +139,9 @@ namespace Welder {
             inclusions.Add(new CP_Selection("scripts", "*.*"));
             inclusions.Add(new CP_Selection("betterrecords", "*.cfg*"));
             inclusions.Add(new CP_Selection("mods", "*.cfg|*.dat|*.json|*.conf"));
+
+            exclusions.Add(new CP_Selection("config", "InvTweaksRules.txt"));
+            exclusions.Add(new CP_Selection("config/JEI", "worldSettings.cfg"));
         }
     }
 }

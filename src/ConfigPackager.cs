@@ -169,6 +169,10 @@ namespace Welder {
             updatingSelectionData = true;
             textBoxSelSubfolder.Text = selectedPackage.selectedSelection.folder;
             textBoxSelWildcards.Text = selectedPackage.selectedSelection.wildcards;
+            if (selectedPackage.selectedIndex >= selectedPackage.inclusions.Count)
+                checkBoxExclusion.Checked = true;
+            else
+                checkBoxExclusion.Checked = false;
             updatingSelectionData = false;
         }
 
@@ -181,7 +185,7 @@ namespace Welder {
         //Removes the selected selection from the selected package
         private void buttonRemoveSelection_Click (object sender, EventArgs e) {
             if (selectedPackage.selectedIndex >= 0) {
-                selectedPackage.RemoveItemAt(selectedPackage.selectedIndex);
+                selectedPackage.RemoveSelectionAt(selectedPackage.selectedIndex);
                 if (selectedPackage.selectedIndex >= selectedPackage.GetSelectionCount())
                     selectedPackage.selectedIndex -= 1;
                 ReloadSelectionList();
@@ -201,6 +205,14 @@ namespace Welder {
         private void buttonLoadDefaultSelection_Click (object sender, EventArgs e) {
             selectedPackage.SetDefaultSelections();
             ReloadSelectionList();
+        }
+
+        //Switches the selected selection from being an inclusion or exclusion
+        private void checkBoxExclusion_CheckedChanged (object sender, EventArgs e) {
+            if (!updatingSelectionData) {
+                selectedPackage.selectedIndex = selectedPackage.SwitchSelectionAt(selectedPackage.selectedIndex);
+                ReloadSelectionList();
+            }
         }
     }
 }

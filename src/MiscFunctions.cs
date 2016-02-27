@@ -58,6 +58,22 @@ namespace Welder {
             return files.ToArray();
         }
 
+        //Returns true if the path ends with folder, followed by wildcards
+        //Returns true if the operation gives an error
+        public static bool PathContainsWildcards (string path, string folder, string wildcards) {
+            path = path.Replace('/', '\\');
+            folder = folder.Replace('/', '\\');
+            try {
+                string[] folderArray = new string[] {folder};
+                char[] trimChars = new char[] {'\\', '/'};
+                string afterFolder = path.Split(folderArray, StringSplitOptions.None)[1].TrimStart(trimChars);
+                return afterFolder == wildcards;
+            }
+            catch {
+                return false;
+            }
+        }
+
         //Returns the site config for a certain website url
         public static MM_SiteConfig GetSiteConfig (string website) {
             foreach (MM_SiteConfig config in ModManager.sites) {

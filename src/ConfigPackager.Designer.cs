@@ -50,6 +50,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.buttonSaveSelection = new System.Windows.Forms.Button();
             this.buttonLoadDefaultSelection = new System.Windows.Forms.Button();
+            this.checkBoxExclusion = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -218,7 +219,7 @@
             this.listViewSelections.Location = new System.Drawing.Point(188, 148);
             this.listViewSelections.MultiSelect = false;
             this.listViewSelections.Name = "listViewSelections";
-            this.listViewSelections.Size = new System.Drawing.Size(524, 363);
+            this.listViewSelections.Size = new System.Drawing.Size(524, 334);
             this.listViewSelections.TabIndex = 7;
             this.listViewSelections.UseCompatibleStateImageBehavior = false;
             this.listViewSelections.View = System.Windows.Forms.View.Details;
@@ -317,19 +318,31 @@
             // buttonLoadDefaultSelection
             // 
             this.buttonLoadDefaultSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLoadDefaultSelection.Location = new System.Drawing.Point(600, 546);
+            this.buttonLoadDefaultSelection.Location = new System.Drawing.Point(188, 488);
             this.buttonLoadDefaultSelection.Name = "buttonLoadDefaultSelection";
-            this.buttonLoadDefaultSelection.Size = new System.Drawing.Size(112, 23);
+            this.buttonLoadDefaultSelection.Size = new System.Drawing.Size(524, 23);
             this.buttonLoadDefaultSelection.TabIndex = 16;
             this.buttonLoadDefaultSelection.Text = "Load Defaults";
             this.buttonLoadDefaultSelection.UseVisualStyleBackColor = true;
             this.buttonLoadDefaultSelection.Click += new System.EventHandler(this.buttonLoadDefaultSelection_Click);
+            // 
+            // checkBoxExclusion
+            // 
+            this.checkBoxExclusion.AutoSize = true;
+            this.checkBoxExclusion.Location = new System.Drawing.Point(600, 548);
+            this.checkBoxExclusion.Name = "checkBoxExclusion";
+            this.checkBoxExclusion.Size = new System.Drawing.Size(64, 17);
+            this.checkBoxExclusion.TabIndex = 17;
+            this.checkBoxExclusion.Text = "Exclude";
+            this.checkBoxExclusion.UseVisualStyleBackColor = true;
+            this.checkBoxExclusion.CheckedChanged += new System.EventHandler(this.checkBoxExclusion_CheckedChanged);
             // 
             // ConfigPackager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1244, 581);
+            this.Controls.Add(this.checkBoxExclusion);
             this.Controls.Add(this.buttonLoadDefaultSelection);
             this.Controls.Add(this.buttonSaveSelection);
             this.Controls.Add(this.label6);
@@ -385,5 +398,6 @@
         private System.Windows.Forms.Button buttonLoadDefaultSelection;
         private System.Windows.Forms.ColumnHeader subfolder;
         private System.Windows.Forms.ColumnHeader wildcards;
+        private System.Windows.Forms.CheckBox checkBoxExclusion;
     }
 }
