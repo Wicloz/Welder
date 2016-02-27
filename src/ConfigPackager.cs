@@ -141,13 +141,16 @@ namespace Welder {
             updatingSelectionData = true;
             listViewSelections.Items.Clear();
             listViewSelections.SelectedIndices.Clear();
-            for (int i = 0; i < selectedPackage.selectionFolder.Count; i++) {
-                ListViewItem lvi = new ListViewItem(selectedPackage.selectionFolder[i]);
-                lvi.SubItems.Add(selectedPackage.selectionWildcards[i]);
+            selectedPackage.selectedSelection = new CP_Selection();
+            for (int i = 0; i < selectedPackage.GetSelectionCount(); i++) {
+                ListViewItem lvi = new ListViewItem(selectedPackage.GetSelectionAt(i).folder);
+                lvi.SubItems.Add(selectedPackage.GetSelectionAt(i).wildcards);
                 listViewSelections.Items.Add(lvi);
             }
-            if (selectedPackage.selectedSelection < selectedPackage.selectionFolder.Count && selectedPackage.selectedSelection > -1)
-                listViewSelections.SelectedIndices.Add(selectedIndex);
+            if (selectedPackage.selectedIndex < selectedPackage.GetSelectionCount() && selectedPackage.selectedIndex > -1) {
+                listViewSelections.SelectedIndices.Add(selectedPackage.selectedIndex);
+                selectedPackage.selectedSelection = selectedPackage.GetSelectionAt(selectedPackage.selectedIndex);
+            }
             SetSelectionInfoBoxes();
             updatingSelectionData = false;
         }
@@ -155,7 +158,8 @@ namespace Welder {
         //Changes the selected index for the selection on the selected package
         private void listViewSelections_SelectedIndexChanged (object sender, EventArgs e) {
             if (!updatingSelectionData && listViewSelections.SelectedIndices.Count > 0) {
-                selectedPackage.selectedSelection = listViewSelections.SelectedIndices[0];
+                selectedPackage.selectedIndex = listViewSelections.SelectedIndices[0];
+                selectedPackage.selectedSelection = selectedPackage.GetSelectionAt(selectedPackage.selectedIndex);
                 SetSelectionInfoBoxes();
             }
         }
@@ -163,36 +167,32 @@ namespace Welder {
         //Sets the info boxes for the selected selection
         private void SetSelectionInfoBoxes () {
             updatingSelectionData = true;
-            if (selectedPackage.selectedSelection >= 0) {
-                textBoxSelSubfolder.Text = selectedPackage.selectionFolder[selectedPackage.selectedSelection];
-                textBoxSelWildcards.Text = selectedPackage.selectionWildcards[selectedPackage.selectedSelection];
-            }
+            textBoxSelSubfolder.Text = selectedPackage.selectedSelection.folder;
+            textBoxSelWildcards.Text = selectedPackage.selectedSelection.wildcards;
             updatingSelectionData = false;
         }
 
         //Adds a new selection on the selected package
         private void buttonAddSelection_Click (object sender, EventArgs e) {
-            selectedPackage.selectionFolder.Add("");
-            selectedPackage.selectionWildcards.Add("*.*");
+            selectedPackage.inclusions.Add(new CP_Selection());
             ReloadSelectionList();
         }
 
         //Removes the selected selection from the selected package
         private void buttonRemoveSelection_Click (object sender, EventArgs e) {
-            if (selectedPackage.selectedSelection >= 0) {
-                selectedPackage.selectionFolder.RemoveAt(selectedPackage.selectedSelection);
-                selectedPackage.selectionWildcards.RemoveAt(selectedPackage.selectedSelection);
-                if (selectedPackage.selectedSelection >= selectedPackage.selectionFolder.Count)
-                    selectedPackage.selectedSelection -= 1;
+            if (selectedPackage.selectedIndex >= 0) {
+                selectedPackage.RemoveItemAt(selectedPackage.selectedIndex);
+                if (selectedPackage.selectedIndex >= selectedPackage.GetSelectionCount())
+                    selectedPackage.selectedIndex -= 1;
                 ReloadSelectionList();
             }
         }
 
         //Saves the settings for the selected selection
         private void buttonSaveSelection_Click (object sender, EventArgs e) {
-            if (!updatingSelectionData && selectedPackage.selectedSelection >= 0) {
-                selectedPackage.selectionFolder[selectedPackage.selectedSelection] = textBoxSelSubfolder.Text;
-                selectedPackage.selectionWildcards[selectedPackage.selectedSelection] = textBoxSelWildcards.Text;
+            if (!updatingSelectionData) {
+                selectedPackage.selectedSelection.folder = textBoxSelSubfolder.Text;
+                selectedPackage.selectedSelection.wildcards = textBoxSelWildcards.Text;
                 ReloadSelectionList();
             }
         }

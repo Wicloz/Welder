@@ -48,6 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeLogBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeLogBuilder.Designer.cs">
+      <DependentUpon>ChangeLogBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CLB_BuildData.cs" />
+    <Compile Include="CLB_PackData.cs" />
     <Compile Include="ConfigPackager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +66,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CP_ConfigData.cs" />
+    <Compile Include="CP_Selection.cs" />
     <Compile Include="MiscFunctions.cs" />
     <Compile Include="MM_RepoAsker.cs">
       <SubType>Form</SubType>
