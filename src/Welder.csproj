@@ -67,6 +67,12 @@
     </Compile>
     <Compile Include="CP_ConfigData.cs" />
     <Compile Include="CP_Selection.cs" />
+    <Compile Include="ForgeManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForgeManager.Designer.cs">
+      <DependentUpon>ForgeManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiscFunctions.cs" />
     <Compile Include="MM_RepoAsker.cs">
       <SubType>Form</SubType>
@@ -106,8 +112,14 @@
     <Compile Include="ServerBuilder.Designer.cs">
       <DependentUpon>ServerBuilder.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChangeLogBuilder.resx">
+      <DependentUpon>ChangeLogBuilder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigPackager.resx">
       <DependentUpon>ConfigPackager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForgeManager.resx">
+      <DependentUpon>ForgeManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MM_RepoAsker.resx">
       <DependentUpon>MM_RepoAsker.cs</DependentUpon>
