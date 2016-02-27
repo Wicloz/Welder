@@ -119,6 +119,8 @@ namespace Welder {
             list.Add("defaultkeys");
             list.Add("neat");
             list.Add("ding");
+            list.Add("betterrain");
+            list.Add("stellarsky");
             return list;
         }
 
