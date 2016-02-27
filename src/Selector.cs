@@ -11,12 +11,18 @@ using System.Windows.Forms;
 namespace Welder
 {
     public partial class Selector : Form {
+        private ForgeManager forgeManager = new ForgeManager();
         private ModManager modManager = new ModManager();
         private ConfigPackager configPackager = new ConfigPackager();
         private ServerBuilder serverBuilder = new ServerBuilder();
+        private ChangeLogBuilder changelogBuilder = new ChangeLogBuilder();
 
         public Selector() {
             InitializeComponent();
+        }
+
+        private void buttonForgeManager_Click (object sender, EventArgs e) {
+            forgeManager.Show();
         }
 
         private void buttonModManager_Click(object sender, EventArgs e) {
@@ -29,6 +35,10 @@ namespace Welder
 
         private void buttonServerBuilder_Click (object sender, EventArgs e) {
             serverBuilder.Show();
+        }
+
+        private void buttonChangeLogBuilder_Click (object sender, EventArgs e) {
+            changelogBuilder.Show();
         }
     }
 }

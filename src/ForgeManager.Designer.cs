@@ -1,5 +1,5 @@
 ﻿namespace Welder {
-    partial class ChangeLogBuilder {
+    partial class ForgeManager {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,19 +23,19 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent () {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangeLogBuilder));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgeManager));
             this.SuspendLayout();
             // 
-            // ChangeLogBuilder
+            // ForgeManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ChangeLogBuilder";
-            this.Text = "Changelog Creator";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangeLogBuilder_FormClosing);
-            this.Load += new System.EventHandler(this.ChangeLogBuilder_Load);
+            this.Name = "ForgeManager";
+            this.Text = "Forge Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ForgeManager_FormClosing);
+            this.Load += new System.EventHandler(this.ForgeManager_Load);
             this.ResumeLayout(false);
 
         }
