@@ -328,6 +328,7 @@
             // 
             // checkBoxExclusion
             // 
+            this.checkBoxExclusion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxExclusion.AutoSize = true;
             this.checkBoxExclusion.Location = new System.Drawing.Point(600, 548);
             this.checkBoxExclusion.Name = "checkBoxExclusion";
